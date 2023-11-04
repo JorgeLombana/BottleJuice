@@ -23,3 +23,13 @@ app.listen(3000, () => console.log('listening on port', 3000))
 //app uses routes
 app.use('/api/user',userRoutes)
 app.use('/api/auth',authRoutes)
+
+app.use((err,req,res,next)=>{
+  const statusCode = err.statusCode || 500
+  const message = err.message || 'internal server error :v'
+  return res.status(statusCode).json({
+    succes:false,
+    message,
+    statusCode
+  })
+})
