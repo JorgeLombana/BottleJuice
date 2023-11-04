@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function SignUp() {
+
+  //declaration and inizalisation of useState
   const [formData, setFormData] = useState({})
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
-
+  
+  //
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value })
   }
