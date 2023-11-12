@@ -4,32 +4,36 @@ import dotenv from 'dotenv'
 import { error } from 'console'
 import userRoutes from './routes/user.routes.js'
 import authRoutes from './routes/auth.routes.js'
+import cookieParser from 'cookie-parser'
 
 //config the enviorment variables
 dotenv.config()
 
 //connection to db
 mongoose
-.connect(process.env.MONGO)
-.then(() => console.log('Connected to mongo db'))
-.catch((error) => console.log(error))
+  .connect(process.env.MONGO)
+  .then(() => console.log('Connected to mongo db'))
+  .catch((error) => console.log(error))
 
 //app declaration
 const app = Express()
-//app configarotion to can have json 
+//app configarotion to can have json
 app.use(Express.json())
+
+app.use(cookieParser())
+
 //app listent to a port
 app.listen(3000, () => console.log('listening on port', 3000))
 //app uses routes
-app.use('/api/user',userRoutes)
-app.use('/api/auth',authRoutes)
+app.use('/api/user', userRoutes)
+app.use('/api/auth', authRoutes)
 
-app.use((err,req,res,next)=>{
+app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500
   const message = err.message || 'internal server error :v'
   return res.status(statusCode).json({
-    succes:false,
+    succes: false,
     message,
-    statusCode
+    statusCode,
   })
 })
