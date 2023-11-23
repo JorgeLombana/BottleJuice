@@ -1,39 +1,48 @@
-import Express from 'express'
-import mongoose from 'mongoose'
-import dotenv from 'dotenv'
-import { error } from 'console'
-import userRoutes from './routes/user.routes.js'
-import authRoutes from './routes/auth.routes.js'
-import cookieParser from 'cookie-parser'
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import userRoutes from './routes/user.route.js';
+import authRoutes from './routes/auth.route.js';
+import cookieParser from 'cookie-parser';
+import path from 'path';
+dotenv.config();
 
-//config the enviorment variables
-dotenv.config()
-
-//connection to db
 mongoose
   .connect(process.env.MONGO)
-  .then(() => console.log('Connected to mongo db'))
-  .catch((error) => console.log(error))
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-//app declaration
-const app = Express()
-//app configarotion to can have json
-app.use(Express.json())
+const __dirname = path.resolve();
 
-app.use(cookieParser())
+const app = express();
 
-//app listent to a port
-app.listen(3000, () => console.log('listening on port', 3000))
-//app uses routes
-app.use('/api/user', userRoutes)
-app.use('/api/auth', authRoutes)
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
+
+app.use(express.json());
+
+app.use(cookieParser());
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
+
+app.use('/api/user', userRoutes);
+app.use('/api/auth', authRoutes);
 
 app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500
-  const message = err.message || 'internal server error :v'
+  const statusCode = err.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
   return res.status(statusCode).json({
-    succes: false,
+    success: false,
     message,
     statusCode,
-  })
-})
+  });
+});
