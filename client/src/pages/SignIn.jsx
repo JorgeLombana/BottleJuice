@@ -8,17 +8,18 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import OAuth from '../components/OAuth'
 import styled from 'styled-components'
+import { toast, Toaster } from 'sonner'
 
 const Container = styled.div`
+  height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `
 const LoginContainer = styled.div`
+  margin-top: 4%;
   display: flex;
   flex-direction: column;
-  padding-top: 5%;
   justify-content: center;
   align-items: center;
 `
@@ -73,14 +74,11 @@ const RegisterDivisor = styled.div`
     height: 2px;
     width: 28vw;
   }
-  @media only screen (){
-    
-  }
 `
 const RegisterButton = styled.button`
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    width: 200px;
-    height: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  width: 200px;
+  height: 50px;
   &:hover {
     box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
   }
@@ -118,8 +116,18 @@ export default function SignIn() {
       dispatch(signInFailure(error))
     }
   }
+
+  const alert = () => {
+    {
+      error
+        ? toast.error(error.message) || toast.error('Something went wrong!')
+        : ''
+    }
+  }
+
   return (
     <Container>
+      <Toaster position="bottom-left" expand={true} />
       <LoginContainer>
         <Title>log in</Title>
         <Form onSubmit={handleSubmit}>
@@ -139,17 +147,15 @@ export default function SignIn() {
             onChange={handleChange}
           />
 
-          <button style={buttonStyle} disabled={loading}>
+          <button onClick={alert} style={buttonStyle} disabled={loading}>
             {loading ? 'Loading...' : 'Log in'}
           </button>
-          <p>{error ? error.message || 'Something went wrong!' : ''}</p>
-        <RegisterDivisor>
-          <hr />
-          Or
-          <hr />
-        </RegisterDivisor>
+          <RegisterDivisor>
+            <hr />
+            Or
+            <hr />
+          </RegisterDivisor>
         </Form>
-
 
         <ContainerGoogleRegister>
           <ContinueWithGoogle />

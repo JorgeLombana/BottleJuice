@@ -14,7 +14,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   text-transform: capitalize;
   font-weight: 500;
-  width: 100vw;
+  width: 100%;
 `
 
 const ContainerLeft = styled.div`
@@ -91,7 +91,7 @@ const UnordedListMobile = styled.ul`
   font-weight: 400;
   display: none;
   transition: all 0.35s ease-in-out;
-
+  z-index: 999;
   @media only screen and (max-width: 1024px) {
     left: -550px;
     display: flex;
@@ -158,7 +158,6 @@ const NavIcon = styled.div`
   display: flex;
   margin-top: 7px;
   overflow-y: visible;
-
 `
 
 const NavIconSpan = styled.span`
@@ -284,8 +283,18 @@ export default function Header() {
             </Link>
             <Link to="/profile">
               {currentUser ? (
-                <img src={currentUser.profilePicture} 
-                className="h-7 w-7 rounded-full object-cover"alt="profile" />
+                <div style={{ marginLeft: -25 }}>
+                  <img
+                    src={currentUser.profilePicture}
+                    style={{
+                      height: 28,
+                      width: 28,
+                      borderRadius: 50,
+                      objectFit: 'cover',
+                    }}
+                    alt="profile"
+                  />
+                </div>
               ) : (
                 <i
                   className="ri-user-line"
