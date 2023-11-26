@@ -4,6 +4,7 @@ import About from './pages/About'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Profile from './pages/Profile'
+import {Testimony} from './pages/Testimony'
 import Header from './components/Header'
 import PrivateRoute from './components/PrivateRoute'
 import styled from 'styled-components'
@@ -51,7 +52,9 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/testimony" element={<Testimony />} />
         <Route element={<PrivateRoute />}>
+          
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
