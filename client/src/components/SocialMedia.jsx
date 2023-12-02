@@ -25,11 +25,11 @@ const SocialMedia = () => {
   return (
     <Container>
       <div>
-        <i class="ri-facebook-box-line"></i>
-        <i class="ri-instagram-line"></i>
-        <i class="ri-twitter-x-line"></i>
-        <i class="ri-mail-send-line"></i>
-        <i class="ri-phone-line"></i>
+        <i className="ri-facebook-box-line"></i>
+        <i className="ri-instagram-line"></i>
+        <i className="ri-twitter-x-line"></i>
+        <i className="ri-mail-send-line"></i>
+        <i className="ri-phone-line"></i>
       </div>
     </Container>
   )

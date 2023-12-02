@@ -87,17 +87,17 @@ const Footer = () => {
             <StyledLInk to="/">
               <li>
                 Home
-                <i class="ri-arrow-right-up-line" />
+                <i className="ri-arrow-right-up-line" />
               </li>
             </StyledLInk>
             <StyledLInk to="/about">
               <li>
-                About <i class="ri-arrow-right-up-line" />
+                About <i className="ri-arrow-right-up-line" />
               </li>
             </StyledLInk>
             <StyledLInk to="/reviews">
               <li>
-                Reviews <i class="ri-arrow-right-up-line" />
+                Reviews <i className="ri-arrow-right-up-line" />
               </li>
             </StyledLInk>
           </UnordedList>
@@ -108,17 +108,17 @@ const Footer = () => {
           <UnordedList>
             <StyledLInk to="/">
               <li>
-                Privacy Policy <i class="ri-arrow-right-up-line"></i>
+                Privacy Policy <i className="ri-arrow-right-up-line"></i>
               </li>
             </StyledLInk>
             <StyledLInk to="/">
               <li>
-                Terms and Conditions <i class="ri-arrow-right-up-line"></i>
+                Terms and Conditions <i className="ri-arrow-right-up-line"></i>
               </li>
             </StyledLInk>
             <StyledLInk to="/">
               <li>
-                Return Policy <i class="ri-arrow-right-up-line"></i>
+                Return Policy <i className="ri-arrow-right-up-line"></i>
               </li>
             </StyledLInk>
           </UnordedList>
@@ -127,15 +127,15 @@ const Footer = () => {
         <FooterSections>
           <FooterTitles>Contact</FooterTitles>
           <ContactLink>
-            <i class="ri-map-pin-2-line"></i>
+            <i className="ri-map-pin-2-line"></i>
             <span>Carrera 1 #5-21, Garzón, Huila</span>
           </ContactLink>
           <ContactLink>
-            <i class="ri-phone-line"></i>
+            <i className="ri-phone-line"></i>
             <span>3132742352</span>
           </ContactLink>
           <ContactLink>
-            <i class="ri-mail-send-line"></i>
+            <i className="ri-mail-send-line"></i>
             <span>bottlejuice@gmail.com</span>
           </ContactLink>
         </FooterSections>
@@ -157,7 +157,7 @@ const Footer = () => {
       </BodyFooter>
       <Copyright>
         <p>
-          Copyright <i class="ri-copyright-line"></i> 2023 Bottle Juice. All
+          Copyright <i className="ri-copyright-line"></i> 2023 Bottle Juice. All
           rights reserved.
         </p>
       </Copyright>

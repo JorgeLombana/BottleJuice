@@ -17,6 +17,170 @@ import {
   deleteUserFailure,
   signOut,
 } from '../redux/user/userSlice'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { toast, Toaster } from 'sonner'
+
+const Container = styled.div`
+  height: 100vh;
+`
+
+const ContainerProfile = styled.div`
+  position: relative;
+  width: 1024px;
+  margin-inline: auto;
+  margin-top: 1%;
+  p {
+    margin-top: 40px;
+    text-align: center;
+  }
+  form {
+    .inputsAndLabels {
+      width: 50%;
+      margin-inline: auto;
+      label {
+        display: block;
+        .inputs {
+          font-weight: 400;
+          display: flex;
+          margin-inline: auto;
+          margin-bottom: 20px;
+          padding-left: 15px;
+          border: 1px solid rgba(0, 0, 0, 0.3);
+          height: 50px;
+          width: 100%;
+        }
+      }
+      label:first-of-type {
+        margin-top: 40px;
+      }
+      .updateDelete {
+        display: flex;
+        justify-content: space-between;
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(0, 0, 0, 0.3);
+          height: 50px;
+          width: 40%;
+        }
+        div {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(0, 0, 0, 0.3);
+          height: 50px;
+          width: 40%;
+        }
+      }
+    }
+  }
+  .signOut {
+    font-size: 1.3rem;
+    position: absolute;
+    top: 214px;
+    right: 30px;
+    cursor: pointer;
+  }
+`
+
+const ComeBackContainer = styled.button`
+  position: fixed;
+  background-color: white;
+  top: 100px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 5px 20px 5px 15px;
+  &:hover {
+    transition: 1s all;
+  }
+`
+
+const ContainerCoverPhoto = styled.div`
+  width: 100%;
+  height: 200px;
+  background: url('https://images.unsplash.com/photo-1608153917357-33666ba96cd5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+
+  /* background: url('https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-position-y: 315px; */
+  background-position: center;
+  background-size: cover;
+`
+
+const StyledImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`
+
+const CamerIconOverlay = styled.i`
+  position: absolute;
+  top: 33%;
+  left: 38%;
+  z-index: 10;
+
+  font-size: 40px;
+  color: #bbc2bd;
+  display: none;
+  &:hover {
+    ${StyledImg} {
+      filter: grayscale(110%);
+      cursor: pointer;
+    }
+  }
+`
+const ImgContainer = styled.div`
+  margin-top: -100px;
+  margin-left: 80px;
+  position: relative;
+  width: 180px;
+  height: 180px;
+  &:hover {
+    ${StyledImg} {
+      display: flex;
+      cursor: pointer;
+      filter: grayscale(100%);
+    }
+    ${CamerIconOverlay} {
+      cursor: pointer;
+      display: flex;
+    }
+  }
+  .imgMsg {
+    margin-top: 6px;
+    margin-left: -60px;
+    width: 300px;
+  }
+`
+
+const TopProfile = styled.div`
+  margin-top: -80px;
+  height: 80px;
+  position: relative;
+  /* border: 1px solid rgba(0, 0, 0, 1); */
+  z-index: -1;
+  span {
+    cursor: pointer;
+    font-size: 1.3rem;
+    position: absolute;
+    right: 40px;
+    top: 20px;
+  }
+`
+
+const Title = styled.h2`
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  left: 280px;
+  top: 15px;
+  font-size: 1.4rem;
+`
 
 export default function Profile() {
   const dispatch = useDispatch()
@@ -106,63 +270,128 @@ export default function Profile() {
       console.log(error)
     }
   }
+
+  const [showImageMessage, setShowImageMessage] = useState(true)
+
+  useEffect(() => {
+    if (showImageMessage) {
+      const timeoutId = setTimeout(() => {
+        setShowImageMessage(false)
+      }, 4000)
+
+      return () => clearTimeout(timeoutId)
+    }
+  }, [showImageMessage])
+
   return (
-    <div>
-      <h1>Profile</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="file"
-          ref={fileRef}
-          hidden
-          accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
-        <img
-          src={formData.profilePicture || currentUser.profilePicture}
-          alt="profile"
-          onClick={() => fileRef.current.click()}
-        />
-        <p>
-          {imageError ? (
-            <span>
-              Error uploading image (file size must be less than 2 MB)
-            </span>
-          ) : imagePercent > 0 && imagePercent < 100 ? (
-            <span>{`Uploading: ${imagePercent} %`}</span>
-          ) : imagePercent === 100 ? (
-            <span>Image uploaded successfully</span>
-          ) : (
-            ''
-          )}
-        </p>
-        <input
-          defaultValue={currentUser.username}
-          type="text"
-          id="username"
-          placeholder="Username"
-          onChange={handleChange}
-        />
-        <input
-          defaultValue={currentUser.email}
-          type="email"
-          id="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          id="password"
-          placeholder="Password"
-          onChange={handleChange}
-        />
-        <button>{loading ? 'Loading...' : 'Update'}</button>
-      </form>
-      <div>
-        <span onClick={handleDeleteAccount}>Delete Account</span>
-        <span onClick={handleSignOut}>Sign out</span>
-      </div>
-      <p>{error && 'Something went wrong!'}</p>
-      <p>{updateSuccess && 'User is updated successfully!'}</p>
-    </div>
+    <>
+      {/* <ComeBackContainer>
+        <i className="ri-arrow-left-line"></i>
+        <p>Come back</p>
+      </ComeBackContainer> */}
+      <Container>
+        <Toaster position="bottom-left" expand={true} />
+        <ContainerProfile>
+          <Link to={'/'}></Link>
+
+          <form onSubmit={handleSubmit}>
+            <ContainerCoverPhoto></ContainerCoverPhoto>
+
+            <ImgContainer>
+              <CamerIconOverlay
+                onClick={() => fileRef.current.click()}
+                className="ri-camera-fill "
+              />
+              <StyledImg
+                src={formData.profilePicture || currentUser.profilePicture}
+                alt="profile"
+                onClick={() => fileRef.current.click()}
+              />
+              <input
+                type="file"
+                ref={fileRef}
+                hidden
+                accept="image/*"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+
+              <p className="imgMsg">
+                {imageError ? (
+                  <span style={{ color: 'red' }}>
+                    Error uploading image (file size must be less than 2 MB)
+                  </span>
+                ) : imagePercent > 0 && imagePercent < 100 ? (
+                  <span
+                    style={{ color: 'orange' }}
+                  >{`Uploading: ${imagePercent} %`}</span>
+                ) : imagePercent === 100 ? (
+                  <span style={{ color: 'green' }}>
+                    Image uploaded successfully
+                  </span>
+                ) : (
+                  ''
+                )}
+              </p>
+            </ImgContainer>
+
+            <TopProfile>
+              <Title>
+                {currentUser.username}
+                <i className="ri-verified-badge-fill"></i>
+              </Title>
+            </TopProfile>
+            <div className="inputsAndLabels">
+              <label htmlFor="username">
+                Username
+                <input
+                  className="inputs"
+                  defaultValue={currentUser.username}
+                  type="text"
+                  id="username"
+                  placeholder="Username"
+                  onChange={handleChange}
+                />
+              </label>
+
+              <label htmlFor="email">
+                email
+                <input
+                  className="inputs"
+                  defaultValue={currentUser.email}
+                  type="email"
+                  id="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                />
+              </label>
+
+              <label htmlFor="password">
+                password
+                <input
+                  className="inputs"
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  onChange={handleChange}
+                />
+              </label>
+              <div className="updateDelete">
+                <button>{loading ? 'Loading...' : 'Update'}</button>
+                <div>
+                  <span onClick={handleDeleteAccount}>Delete Account</span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <span className="signOut" onClick={handleSignOut}>
+            <i className="ri-logout-box-r-line"></i>
+          </span>
+          <p style={{ color: 'red' }}>{error && 'Something went wrong!'}</p>
+          <p style={{ color: 'green' }}>
+            {updateSuccess && 'User is updated successfully!'}
+          </p>
+        </ContainerProfile>
+      </Container>
+    </>
   )
 }

@@ -8,10 +8,9 @@ import Header from './components/Header'
 import PrivateRoute from './components/PrivateRoute'
 import styled from 'styled-components'
 import Footer from './components/Footer'
+import Flavors from './pages/Flavors'
 
-const Container = styled.div`
-
-`
+const Container = styled.div``
 
 const PromoMessage = styled.div`
   height: 30px;
@@ -55,6 +54,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/flavors" element={<Flavors />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>

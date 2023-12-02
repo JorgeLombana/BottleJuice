@@ -1,24 +1,50 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import userReducer from './user/userSlice.js';
-import { persistReducer, persistStore } from 'redux-persist';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import userReducer from './user/userSlice.js';
+import bazarReducer from './bazarSlice';
 
-const rootReducer = combineReducers({ user: userReducer });
-
-const persistConfig = {
-  key: 'root',
+// Configuración de persistencia para user
+const userPersistConfig = {
+  key: 'user',
   version: 1,
   storage,
 };
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// Configuración de persistencia para bazar
+const bazarPersistConfig = {
+  key: 'bazar',
+  version: 1,
+  storage,
+};
+const persistedBazarReducer = persistReducer(bazarPersistConfig, bazarReducer);
 
+// Combinar ambos reducers
+const rootReducer = combineReducers({
+  user: persistedUserReducer,
+  bazar: persistedBazarReducer,
+});
+
+// Configuración del almacén
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
     }),
 });
 
+// Configuración de persistor
 export const persistor = persistStore(store);

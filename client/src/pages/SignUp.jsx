@@ -161,7 +161,7 @@ export default function SignUp() {
           <Link to="/sign-in">
             <LoginButton>
               Sign in
-              <i class="ri-arrow-right-up-line"></i>
+              <i className="ri-arrow-right-up-line"></i>
             </LoginButton>
           </Link>
         </ContainerGoogleRegister>

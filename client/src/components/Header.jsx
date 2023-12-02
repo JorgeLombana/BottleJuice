@@ -15,6 +15,7 @@ const HeaderContainer = styled.header`
   text-transform: capitalize;
   font-weight: 500;
   width: 100%;
+  z-index: 999;
 `
 
 const ContainerLeft = styled.div`
@@ -269,7 +270,7 @@ export default function Header() {
             <Link to="/">
               <li>Contact us</li>
             </Link>
-            <Link to="/">
+            <Link to="/flavors">
               <li>Flavors</li>
             </Link>
             <Link to="/">
@@ -356,7 +357,7 @@ export default function Header() {
         <Link to="/" onClick={closeMenu}>
           <li>Contact us</li>
         </Link>
-        <Link to="/" onClick={closeMenu}>
+        <Link to="/flavors" onClick={closeMenu}>
           <li>Flavors</li>
         </Link>
       </UnordedListMobile>

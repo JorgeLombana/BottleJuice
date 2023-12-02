@@ -161,7 +161,7 @@ export default function SignIn() {
           <ContinueWithGoogle />
           <Link to="/sign-up">
             <RegisterButton>
-              Create an account <i class="ri-arrow-right-up-line"></i>
+              Create an account <i className="ri-arrow-right-up-line"></i>
             </RegisterButton>
           </Link>
         </ContainerGoogleRegister>

@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Bottle juice maracuya flavor",
+    "prices": {
+      "old": 20.000,
+      "new": 10.000
+    },
+    "description": "",
+    "valoration": "",
+    "aditionalInfo": {
+      "freeshipping": true,
+      "nationalShipping": true,
+      "readyToOrder": true
+    },
+    "images":{
+      
+    }
+  }
+]
