@@ -9,6 +9,8 @@ import PrivateRoute from './components/PrivateRoute'
 import styled from 'styled-components'
 import Footer from './components/Footer'
 import Flavors from './pages/Flavors'
+import Cart from './pages/Cart'
+import Product from './components/Product'
 
 const Container = styled.div``
 
@@ -54,7 +56,8 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/flavors" element={<Flavors />} />
+          <Route path="/cart" element={<Cart />} />
+        <Route path="/product/:id" element={<Product />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>

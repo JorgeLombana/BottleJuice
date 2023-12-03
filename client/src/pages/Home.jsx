@@ -1,126 +1,231 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 
-export default function Home() {
+import Products from "../components/Products";
+
+const Home = () => {
+  // const [products, setProducts] = useState([]);
+  // const data = useLoaderData();
+
+  // useEffect(() => {
+  //   setProducts(data.data);
+  // }, [data]);
   return (
     <div>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo enim quae sapiente nihil, nobis pariatur explicabo at doloribus sit in consectetur deleniti, architecto optio magnam dicta alias, laborum consequatur hic?
-      </p>
-      <p>
-       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consectetur quasi provident possimus esse, autem eos aliquid voluptatem quod sequi blanditiis dicta beatae sed ullam odio qui distinctio cum! Illum, nulla?
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem eligendi
-        reprehenderit totam aspernatur illum placeat, voluptates pariatur
-        facilis ipsam praesentium alias dolores distinctio, at veritatis
-        nesciunt quam aliquid earum repellendus! Culpa aliquam ullam quos
-        inventore ab omnis provident, porro necessitatibus nihil ducimus
-        molestias neque. Temporibus, incidunt accusantium a repellendus
-        voluptate dolorem, placeat animi qui illo nobis recusandae hic minus
-        velit asperiores consequatur ab assumenda ipsum. Aliquid similique omnis
-        ipsam corrupti minus voluptates eligendi, dolorem commodi inventore
-        facilis distinctio repellat, perferendis ad doloremque molestias ex nemo
-        voluptatum libero? Repellat perspiciatis corporis, itaque unde
-        doloremque dignissimos obcaecati vel repudiandae sed quibusdam quis ab
-        ratione rerum reprehenderit praesentium qui magni minima. Fuga impedit
-        quo quidem nemo quasi nam fugit, in atque quaerat porro facere soluta
-        sequi iusto quod, dignissimos ab numquam commodi explicabo tempore
-        cumque assumenda. Provident quaerat non voluptate quas aspernatur maxime
-        minima sed consectetur repellendus blanditiis? Ratione ducimus adipisci
-        explicabo recusandae temporibus incidunt excepturi ullam distinctio sint
-        veritatis dicta labore exercitationem, vero placeat eos minus
-        praesentium illo eaque magnam esse provident. In laborum quibusdam
-        doloremque, aut totam natus optio voluptatum soluta unde, fugit iure
-        delectus! Distinctio ullam perspiciatis commodi quaerat non, laudantium
-        dolores sint officia sunt vero doloribus repudiandae minus obcaecati, ea
-        unde tenetur tempore vitae nihil earum eius quidem iusto vel quia. Nisi
-        amet incidunt illum, officiis possimus tenetur quos ipsa corrupti ipsum
-        velit hic sint sapiente cupiditate eligendi mollitia exercitationem quod
-        ullam iure maxime, impedit ducimus consequatur! Ducimus hic, corporis
-        velit sed laudantium libero delectus quis quibusdam inventore est ipsum
-        maiores accusantium sint illum porro possimus animi cumque officia fuga
-        ex quam perferendis assumenda? Quia pariatur quibusdam accusamus
-        mollitia repudiandae quae alias labore odio magnam soluta praesentium
-        inventore quod cupiditate commodi impedit sed eum, corporis neque
-        necessitatibus aperiam, et odit nihil voluptatum at! Possimus impedit
-        necessitatibus illo iusto, sed sit! Ad reiciendis enim earum doloribus
-        vero dolore, ullam quis, laudantium reprehenderit, voluptatem sapiente
-        doloremque alias. Voluptate perferendis et atque aliquid! Accusamus
-        temporibus porro alias expedita esse qui recusandae at dolorem dolor
-        perferendis suscipit dolores earum voluptate eveniet vel culpa natus
-        facilis explicabo, sed nulla molestiae minima, magnam odit deserunt!
-        Sunt ipsa deserunt inventore consequatur rem! Eaque expedita hic
-        deleniti, doloribus consectetur tempora voluptas recusandae
-        reprehenderit obcaecati dolorem voluptatem veritatis modi ipsam delectus
-        fuga ut! Vero neque aliquam et esse vel! Fugit commodi doloremque
-        recusandae possimus alias aliquam voluptates dolorum? Totam adipisci
-        dignissimos reiciendis atque nostrum modi eos, nam harum consequuntur
-        fugit est ut officiis magnam saepe ea iure qui placeat alias odio
-        perspiciatis at delectus voluptatem blanditiis enim? Sed mollitia
-        voluptas vel suscipit, officiis porro aspernatur perspiciatis! Tempora
-        quod, ad soluta officia cupiditate ratione asperiores deserunt odio
-        alias maxime obcaecati accusamus molestias dolorem ipsum aperiam minima
-        magni, tempore quasi perferendis animi laboriosam architecto quam sint
-        adipisci. Voluptatum harum pariatur, fugiat quas beatae, itaque commodi
-        eius laboriosam, aut reprehenderit doloribus laudantium nemo odio
-        obcaecati nulla voluptatem. Neque culpa ipsam, eveniet ut dolor vero
-        doloremque. Dolores corporis unde enim distinctio aut nihil officiis.
-        Doloribus natus consequatur velit obcaecati quisquam voluptas ullam
-        placeat ipsum numquam! Culpa, pariatur tenetur corporis provident
-        laudantium itaque sunt reprehenderit quod laboriosam dignissimos, optio
-        eveniet modi odio perspiciatis ratione fugit? Quidem aperiam odio
-        dolorem nostrum consequatur rerum doloribus id perferendis voluptatibus?
-        Ratione, accusantium ab maxime magni ullam quos itaque provident dicta
-        sed delectus! Repellat obcaecati quam fugit saepe natus reiciendis
-        consequuntur sed nesciunt magni. Maiores impedit quaerat inventore
-        explicabo fugiat doloremque, neque eveniet enim assumenda necessitatibus
-        iure a reprehenderit, delectus sint tempore voluptatum ullam eaque quasi
-        accusamus commodi sit fugit vero. Atque rerum veritatis voluptatum,
-        ratione deleniti sunt quibusdam neque natus dolorum laudantium eaque
-        dolores cupiditate error soluta quo rem, ab dolorem id tempore? Corporis
-        voluptas voluptatem rerum accusamus esse, aliquid commodi hic modi
-        quidem? Impedit saepe nisi facilis unde pariatur quibusdam repellendus
-        reprehenderit ducimus, ea perspiciatis dicta dignissimos eveniet placeat
-        facere soluta architecto sit. Ullam quisquam reprehenderit minima odit
-        dolore voluptatum quos, rerum excepturi debitis eum temporibus pariatur
-        ut eos vitae, deserunt a, cupiditate tenetur reiciendis nam corporis!
-        Quae vero, quos animi maxime repellat aliquid error consequuntur soluta
-        dolorem, corrupti mollitia, incidunt reiciendis exercitationem
-        consectetur delectus cumque recusandae saepe ut expedita odio corporis
-        nam qui. Error magnam optio reiciendis et fugiat aspernatur in quam
-        aliquam excepturi tempora cum maxime debitis fuga nulla ut esse aliquid,
-        possimus at illum omnis. Nostrum, asperiores dolore illum explicabo,
-        dignissimos sint possimus ratione tenetur veritatis numquam hic beatae
-        molestias id a officia repellendus expedita aspernatur distinctio illo
-        natus veniam, itaque fuga. Facilis suscipit illum dolorem, maxime culpa
-        quam. Aliquid consectetur, vitae sint aperiam aliquam recusandae
-        explicabo beatae molestias sunt neque iusto, itaque inventore,
-        doloremque illum est consequatur. Nulla vero laboriosam laudantium
-        placeat dolorem quas fugiat reprehenderit at quis quidem ipsa aliquid in
-        voluptatum aut exercitationem animi, mollitia id dolorum voluptates
-        iusto ipsum esse? Voluptas assumenda, aliquam eius ipsa, sapiente
-        voluptates ullam iure doloremque recusandae hic optio quis sint enim
-        architecto pariatur quam vel et beatae eos porro incidunt quos ex?
-        Beatae, est modi rerum ut fugit cum numquam quisquam maxime blanditiis
-        excepturi, sequi aliquid corporis repellat minima totam! Iste, sapiente
-        ipsum amet nam accusamus asperiores deleniti nobis soluta officia sed in
-        id libero eaque aut earum repellendus necessitatibus quas accusantium
-        optio? Animi ea explicabo modi numquam vero laboriosam neque quibusdam
-        sit ex, quod error dolore quisquam debitis quo commodi enim asperiores
-        velit recusandae provident, dicta ipsam facilis? Perferendis alias
-        reiciendis quasi doloribus ullam placeat veniam, eos ducimus ab voluptas
-        ad modi doloremque accusamus neque temporibus repellat vero? Tenetur non
-        quo quae recusandae? Voluptatibus, quod iusto dolorum esse eveniet magni
-        ullam modi necessitatibus facere quasi sit quam quidem nisi, sequi,
-        perspiciatis molestias cum quaerat alias in? Porro iste quas, ullam quae
-        tempora nihil placeat voluptates repellendus, cum non vel, mollitia
-        perspiciatis doloribus? Velit ab eos, sit, ducimus dolores sunt vero
-        officiis aliquam blanditiis tempore dicta saepe magnam consectetur
-        repellat? Mollitia quibusdam provident vel sit sed fugit eum quos itaque
-        voluptate molestias rem accusantium doloremque, culpa laboriosam cum!
-        Necessitatibus repellendus saepe repudiandae vero recusandae odit qui
-        placeat numquam nemo, quia doloribus reiciendis modi?
-      </p>
-    </div>
-  )
+
+      <Products products={[
+{
+"_id": 2,
+"title": "Jacket with wollen hat",
+"isNew": true,
+"oldPrice": "70",
+"price": 65,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 3
+},
+{
+"_id": 3,
+"title": "Compact fashion t-shirt",
+"isNew": true,
+"oldPrice": "70",
+"price": 55.99,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/2752045/pexels-photo-2752045.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 3
+},
+{
+"_id": 4,
+"title": "Blue jins",
+"isNew": true,
+"oldPrice": "70",
+"price": 50,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/1485031/pexels-photo-1485031.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 3
+},
+{
+"_id": 5,
+"title": "Skirts with full setup",
+"isNew": true,
+"oldPrice": "800",
+"price": 695,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/1631181/pexels-photo-1631181.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 5
+},
+{
+"_id": 6,
+"title": "Yellow Hoody",
+"isNew": false,
+"oldPrice": "200",
+"price": 180,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "men",
+"image": "https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 4
+},
+{
+"_id": 7,
+"title": "Black t-shirt for women",
+"isNew": false,
+"oldPrice": "60",
+"price": 20,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/2010812/pexels-photo-2010812.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 2
+},
+{
+"_id": 8,
+"title": "Gouwn with Red velvet",
+"isNew": false,
+"oldPrice": "500",
+"price": 350,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/2233703/pexels-photo-2233703.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 3
+},
+{
+"_id": 9,
+"title": "Pink beauty",
+"isNew": false,
+"oldPrice": "150",
+"price": 100,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/2065195/pexels-photo-2065195.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 3
+},
+{
+"_id": 10,
+"title": "Jean's stylish Jacket",
+"isNew": false,
+"oldPrice": "250",
+"price": 245,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "men",
+"image": "https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 5
+},
+{
+"_id": 11,
+"title": "Jamdani Saree",
+"isNew": false,
+"oldPrice": "1000",
+"price": 800,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/3363204/pexels-photo-3363204.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 4
+},
+{
+"_id": 12,
+"title": "Black Jacket",
+"isNew": false,
+"oldPrice": "200",
+"price": 140,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "men",
+"image": "https://images.pexels.com/photos/983497/pexels-photo-983497.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 3
+},
+{
+"_id": 13,
+"title": "Black top with jeans",
+"isNew": false,
+"oldPrice": "130",
+"price": 120,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/3672825/pexels-photo-3672825.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 4
+},
+{
+"_id": 14,
+"title": "Clothes with bag",
+"isNew": false,
+"oldPrice": "80",
+"price": 50,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "kids",
+"image": "https://images.pexels.com/photos/36029/aroni-arsa-children-little.jpg?auto=compress&cs=tinysrgb&w=600",
+"rating": 2
+},
+{
+"_id": 15,
+"title": "Stylish jeans in lightblue",
+"isNew": false,
+"oldPrice": "120",
+"price": 100,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/2738792/pexels-photo-2738792.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 4
+},
+{
+"_id": 16,
+"title": "Unknown horizon",
+"isNew": false,
+"oldPrice": "400",
+"price": 350,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "men",
+"image": "https://images.pexels.com/photos/2866077/pexels-photo-2866077.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 4
+},
+{
+"_id": 17,
+"title": "Light tops",
+"isNew": false,
+"oldPrice": "140",
+"price": 120,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/2010925/pexels-photo-2010925.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 3
+},
+{
+"_id": 18,
+"title": "Khakhi jeans",
+"isNew": false,
+"oldPrice": "250",
+"price": 190,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/3054973/pexels-photo-3054973.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 4
+},
+{
+"_id": 19,
+"title": "Black full sleeve",
+"isNew": false,
+"oldPrice": "180",
+"price": 170,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/2693849/pexels-photo-2693849.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 3
+},
+{
+"_id": 20,
+"title": "Formal for Men",
+"isNew": false,
+"oldPrice": "500",
+"price": 490,
+"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla non magni facili blanditiis molestias soluta eveniet illum accusantium eius mollitia eligendi, ex iste doloribus magnam.",
+"category": "women",
+"image": "https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600",
+"rating": 5
 }
+]} />
+    </div>
+  );
+};
+
+export default Home;

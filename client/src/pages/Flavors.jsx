@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
 import styled from 'styled-components'
 import { mango, pera, rojo, zanahoria } from '../images'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../redux/bazarSlice'
+import { useLocation } from 'react-router-dom'
 
 const Container = styled.div`
   height: 90vh;
@@ -41,7 +44,6 @@ const ImgColumn = styled.img`
 
 const PrincipalImageContainer = styled.div`
   cursor: pointer;
-
   margin-left: 15px;
   height: 500px;
 `
@@ -50,7 +52,6 @@ const MainImageRendering = styled.img`
   height: 100%;
   background-color: #f7fafa;
   border-radius: 15px;
-  transition: opacity 0.3s ease-in-out;
 `
 
 const ProductDescription = styled.div`
@@ -150,6 +151,7 @@ const ExtraInformationContainer = styled.div`
 `
 
 const Flavors = () => {
+
   const [selectedImage, setSelectedImage] = useState(mango)
   const [quantity, setQuantity] = useState(0)
 
@@ -165,6 +167,7 @@ const Flavors = () => {
 
   const incrementQuantity = () => {
     setQuantity(quantity + 1)
+    
   }
   return (
     <>
@@ -210,8 +213,9 @@ const Flavors = () => {
               </ColumnImgContainer>
             </ColumnImages>
 
-            <PrincipalImageContainer>
+            <PrincipalImageContainer className="transition: all duration-500 ease-in-out;">
               <MainImageRendering
+                className="transition: all duration-500 ease-in-out;"
                 src={selectedImage}
                 alt="Selected product flavor"
               />

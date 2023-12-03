@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Cart from '../pages/Cart'
 
 const HeaderContainer = styled.header`
   padding: 10px 0;
@@ -222,6 +223,27 @@ const StyledIcon = styled.i`
   }
 `
 
+const CartContainer = styled.i`
+  position: relative;
+`
+
+const CartProduct = styled.span`
+  width: 15px;
+  height: 15px;
+  font-size: 0.7rem;
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  margin-left: -15px;
+  top: -8px;
+  left:28px;
+  padding-top: 1px;
+`
+
 const StyledNavIcon = ({ isOpen, onClick }) => (
   <NavIcon id="nav-icon1" open={isOpen} onClick={onClick}>
     <NavIconSpan open={isOpen}></NavIconSpan>
@@ -231,6 +253,10 @@ const StyledNavIcon = ({ isOpen, onClick }) => (
 )
 
 export default function Header() {
+  const productData = useSelector((state) => state.bazar.productData)
+  const userInfo = useSelector((state) => state.bazar.userInfo)
+  console.log(productData)
+
   const closeMenu = () => {
     setOpen(!open)
   }
@@ -273,14 +299,19 @@ export default function Header() {
             <Link to="/flavors">
               <li>Flavors</li>
             </Link>
-            <Link to="/">
+            <Link to="/flavors">
               <i className="ri-search-line" style={{ fontSize: 18 }}></i>
             </Link>
-            <Link to="/">
-              <i
+            <Link to="/cart">
+              <CartContainer
                 className="ri-shopping-cart-line"
-                style={{ fontSize: 18, marginLeft: -20 }}
-              ></i>
+                style={{
+                  fontSize: 18,
+                  marginLeft: -20,
+                }}
+              >
+                <CartProduct>{productData.length}</CartProduct>
+              </CartContainer>
             </Link>
             <Link to="/profile">
               {currentUser ? (
