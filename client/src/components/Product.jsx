@@ -1,119 +1,260 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { MdOutlineStar } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/bazarSlice";
-// import { ToastContainer, toast } from "react-toastify";
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { MdOutlineStar } from 'react-icons/md'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../redux/bazarSlice'
+import styled from 'styled-components'
+
+const Container = styled.div`
+  height: 90vh;
+`
+
+const ProductContainer = styled.div`
+  padding: 7% 0;
+  width: 70vw;
+  margin-inline: auto;
+  display: flex;
+`
+
+const ImagesContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex: 1;
+`
+
+const ColumnImages = styled.div``
+
+const ColumnImgContainer = styled.div`
+  cursor: pointer;
+  margin-bottom: 10px;
+  background-color: #f7fafa;
+  height: 115px;
+  border-radius: 10px;
+`
+
+const ImgColumn = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+`
+
+const PrincipalImageContainer = styled.div`
+  cursor: pointer;
+  margin-left: 15px;
+  height: 500px;
+`
+
+const MainImageRendering = styled.img`
+  width: 100%;
+  height: 100%;
+  background-color: #f7fafa;
+  border-radius: 15px;
+`
+
+const ProductDescription = styled.div`
+  flex: 1;
+`
+
+const Title = styled.h2`
+  font-weight: 500;
+  font-size: 2.4rem;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+`
+
+const PricesContainer = styled.div``
+
+const NewPrice = styled.span`
+  font-size: 1.3rem;
+`
+
+const Reviews = styled.div`
+  display: flex;
+  align-items: center;
+  .ri-star-fill {
+    font-size: 1.7rem;
+    margin-right: 5px;
+  }
+`
+
+const CustomerReviews = styled.span``
+
+const Description = styled.p`
+
+  color: rgba(0, 0, 0, 0.8);
+`
+
+const AddToCartContainer = styled.div`
+  height: 50px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 25px;
+`
+
+const AddToCartButton = styled.button`
+  background-color: black;
+  color: white;
+  width: 250px;
+  height: 100%;
+  span {
+    margin-right: 5px;
+  }
+`
+
+const CounterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 250px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  height: 100%;
+  div {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    button {
+      font-size: 1.8rem;
+      font-weight: 100;
+    }
+  }
+`
+const ExtraInformationContainer = styled.div`
+  padding: 0 10%;
+  width: 90%;
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+  p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.4);
+  }
+  i {
+    font-size: 1.6rem;
+    color: rgba(0, 0, 0, 0.4);
+    margin-inline: auto;
+  }
+  div {
+    text-align: center;
+  }
+`
 
 const Product = () => {
-  const dispatch = useDispatch();
-  const [details, Details] = useState({});
-  let [baseQty, setBaseQty] = useState(1);
-  const location = useLocation();
+  const dispatch = useDispatch()
+  const [details, setDetails] = useState({})
+  const [baseQty, setBaseQty] = useState(1)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const location = useLocation()
+
   useEffect(() => {
-    Details(location.state.item);
-  }, [location]);
+    setDetails(location.state.item)
+  }, [location])
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        _id: details._id,
+        title: details.title,
+        image: details.images[selectedImageIndex] || details.image,
+        price: details.price,
+        quantity: baseQty,
+        description: details.description,
+      })
+    )
+  }
+
+  const changeImage = (index) => {
+    setSelectedImageIndex(index)
+  }
 
   return (
-    <div>
-      <div className="max-w-screen-xl mx-auto my-10 flex gap-10">
-        <div className="w-2/5 relative">
-          <img
-            className="w-full h-[550px] object-cover"
-            src={details.image}
-            alt="productImg"
-          />
-          <div className="absolute top-4 right-0">
-            {details.isNew && (
-              <p className="bg-black text-white font-semibold font-titleFont px-8 py-1">
-                Sale
-              </p>
+    <Container>
+      <ProductContainer>
+        <ImagesContainer>
+          <ColumnImages>
+            <ColumnImgContainer>
+              {details.images &&
+                details.images.map((image, index) => (
+                  <ImgColumn
+                    key={index}
+                    onClick={() => changeImage(index)}
+                    src={image}
+                    alt={`product image ${index + 1}`}
+                  />
+                ))}
+            </ColumnImgContainer>
+          </ColumnImages>
+          <PrincipalImageContainer>
+            {details.images && details.images.length > 0 && (
+              <MainImageRendering
+                src={details.images[selectedImageIndex] || details.image}
+                alt="Selected product flavor"
+              />
             )}
-          </div>
-        </div>
-        <div className="w-3/5 flex flex-col justify-center gap-12">
-          <div>
-            <h2 className="text-4xl font-semibold">{details.title}</h2>
-            <div className="flex items-center gap-4 mt-3">
-              <p className="line-through font-base text-gray-500">
-                ${details.oldPrice}
-              </p>
-              <p className="text-2xl font-medium text-gray-900">
-                ${details.price}
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="flex text-base">
-              <MdOutlineStar />
-              <MdOutlineStar />
-              <MdOutlineStar />
-              <MdOutlineStar />
-              <MdOutlineStar />
-            </div>
-            <p className="text-xs text-gray-500">(1 Customer review)</p>
-          </div>
-          <p className="text-base text-gray-500 -mt-3">{details.description}</p>
-          <div className="flex gap-4">
-            <div className="w-52 flex items-center justify-between text-gray-500 gap-4 border p-3">
-              <p className="text-sm">Quantity</p>
-              <div className="flex items-center gap-4 text-sm font-semibold">
+          </PrincipalImageContainer>
+        </ImagesContainer>
+
+        <ProductDescription>
+          <Title>{details.title}</Title>
+          <PricesContainer></PricesContainer>
+          <Reviews>
+            <i className="ri-star-fill"></i>
+            <i className="ri-star-fill"></i>
+            <i className="ri-star-fill"></i>
+            <i className="ri-star-fill"></i>
+            <i className="ri-star-fill"></i>
+            <CustomerReviews>(1 customer review)</CustomerReviews>
+          </Reviews>
+          <NewPrice>${details.price}</NewPrice>
+          <Description>{details.description}</Description>
+
+          <AddToCartContainer>
+            <CounterContainer>
+              <span>Quantity</span>
+              <div>
                 <button
-                  onClick={() =>
-                    setBaseQty(baseQty === 1 ? (baseQty = 1) : baseQty - 1)
-                  }
-                  className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
+                  onClick={() => setBaseQty(baseQty === 1 ? 1 : baseQty - 1)}
                 >
                   -
                 </button>
                 {baseQty}
-                <button
-                  onClick={() => setBaseQty(baseQty + 1)}
-                  className="border h-5 font-normal text-lg flex items-center justify-center px-2 hover:bg-gray-700 hover:text-white cursor-pointer duration-300 active:bg-black"
-                >
-                  +
-                </button>
+                <button onClick={() => setBaseQty(baseQty + 1)}>+</button>
               </div>
-            </div>
-            <button
-              onClick={() =>
-                dispatch(
-                  addToCart({
-                    _id: details._id,
-                    title: details.title,
-                    image: details.image,
-                    price: details.price,
-                    quantity: baseQty,
-                    description: details.description,
-                  })
-                ) & ''
-                //  toast.success(`${details.title} is added`)
-              }
-              className="bg-black text-white py-3 px-6 active:bg-gray-800"
-            >
-              add to cart
-            </button>
-          </div>
-          <p className="text-base text-gray-500">
-            Category:{" "}
-            <span className="font-medium capitalize">{details.category}</span>
-          </p>
-        </div>
-      </div>
-      {/* <ToastContainer
-        position="top-left"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      /> */}
-    </div>
-  );
-};
+            </CounterContainer>
 
-export default Product;
+            <AddToCartButton onClick={handleAddToCart}>
+              <span>Add to cart</span>
+            </AddToCartButton>
+          </AddToCartContainer>
+          <ExtraInformationContainer>
+            <div>
+              <i className="ri-truck-line"></i>
+              <p>Free shipping</p>
+            </div>
+            <div>
+              <i className="ri-inbox-unarchive-line"></i>
+              <p>National Shipping</p>
+            </div>
+            <div>
+              <i className="ri-file-list-3-line"></i>
+              <p>ready to order</p>
+            </div>
+            {/* <div>
+                <i className="ri-money-dollar-circle-line"></i>
+                <p>Payment methods</p>
+              </div> */}
+          </ExtraInformationContainer>
+        </ProductDescription>
+      </ProductContainer>
+    </Container>
+  )
+}
+
+export default Product

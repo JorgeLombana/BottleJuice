@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { mango, pera, rojo, zanahoria } from '../images'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../redux/bazarSlice'
 import { useLocation } from 'react-router-dom'
+import productos from '../api/Api'
 
 const Container = styled.div`
   height: 90vh;
@@ -150,8 +151,10 @@ const ExtraInformationContainer = styled.div`
   }
 `
 
-const Flavors = () => {
+const mangoImg = productos[0].images
+console.log(mangoImg);
 
+const Flavors = () => {
   const [selectedImage, setSelectedImage] = useState(mango)
   const [quantity, setQuantity] = useState(0)
 
@@ -167,7 +170,6 @@ const Flavors = () => {
 
   const incrementQuantity = () => {
     setQuantity(quantity + 1)
-    
   }
   return (
     <>
@@ -184,6 +186,7 @@ const Flavors = () => {
                   alt="product mango flavor"
                 />
               </ColumnImgContainer>
+
               <ColumnImgContainer>
                 <ImgColumn
                   onClick={() => {
