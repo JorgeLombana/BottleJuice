@@ -10,7 +10,7 @@ const CartContainer = styled.div`
   display: flex;
   max-width: 100%;
   margin: auto;
-  padding: 20px 0;
+  padding: 70px 100px;
 `;
 
 const CartTotals = styled.div`
@@ -128,7 +128,7 @@ const Cart = () => {
   };
 
   return (
-    <div>
+    <>
       {productData.length > 0 ? (
         <CartContainer>
           <CartItem />
@@ -178,7 +178,7 @@ const Cart = () => {
           </Link>
         </EmptyCartContainer>
       )}
-    </div>
+    </>
   );
 };
 

@@ -12,7 +12,7 @@ const Container = styled.div`
   height: calc(100vh - 79px);
   width: 400vw;
   position: relative;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease-in-out;
 `
 
 const Slider = styled.div`
@@ -99,8 +99,8 @@ const Arrow = styled.i`
 `
 
 const Logo = styled.h2`
-/* transform: rotate(-20deg); */
-margin-top: 50px;
+  /* transform: rotate(-20deg); */
+  margin-top: 50px;
   position: absolute;
   z-index: 2;
   font-family: 'Oswald', sans-serif;
@@ -148,7 +148,7 @@ const Rotation = () => {
         />
         <BottleContainer>
           <BottleImg src={images[currentSlide]} alt="Bottle" />
-          <Logo>Buttle Juice</Logo>
+          {/* <Logo>Buttle Juice</Logo> */}
         </BottleContainer>
         <FruitAnimated>
           <img src={frutosRojosFruits} alt="fruits background" />
