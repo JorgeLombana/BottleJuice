@@ -4,7 +4,12 @@ import rojo from '../images/rojo.png'
 import pera from '../images/pera.png'
 import mango from '../images/mango.png'
 import zanahoria from '../images/zanahoria.png'
-import frutosRojosFruits from '../images/frutosRojosFruits.png'
+import redSlice2 from '../images/red-slice-0.png'
+import redSlice4 from '../images/red-slice-1.png'
+import redSlice0 from '../images/red-slice-2.png'
+import redSlice3 from '../images/red-slice-3.png'
+import redSlice1 from '../images/red-slice-4.png'
+import leaf2 from '../images/leaf-2.png'
 
 const images = [rojo, mango, pera, zanahoria]
 
@@ -65,18 +70,6 @@ const BottleImg = styled.img`
   transition: filter 0.3s ease, transform 1s ease;
 `
 
-const FruitAnimated = styled.div`
-  position: absolute;
-  top: -100px;
-  left: 100px;
-  height: 120%;
-  z-index: 1;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-`
-
 const Arrow = styled.i`
   z-index: 2;
   cursor: pointer;
@@ -118,6 +111,83 @@ const Fixed = styled.div`
   z-index: 100;
 `
 
+const FruitAnimated = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1;
+  width: 100%;
+  height: 400vh;
+`
+const FruitSlide = styled.div`
+  height: calc(100vh - 79px);
+  position: relative;
+`
+const FruitSliceContainer = styled.div`
+  &:first-of-type {
+    position: absolute;
+    top: 1vh;
+    left: 20vw;
+    height: 230px;
+    transform: rotate(-30deg);
+    filter: blur(.6px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+  }
+  &:nth-of-type(2) {
+    position: absolute;
+    bottom: 1vh;
+    left: 10vw;
+    height: 250px;
+    display: none;
+  }
+  &:nth-of-type(3) {
+    position: absolute;
+    top: 20vh;
+    left: -8vw;
+    height: 500px;
+    filter: blur(3px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+  }
+  &:nth-of-type(4) {
+    position: absolute;
+    top: 5vh;
+    right: 20vw;
+    height: 180px;
+    filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+  }
+  &:nth-of-type(5) {
+    filter: blur(1.5px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    position: absolute;
+    bottom: 10vh;
+    right: 1vw;
+    height: 400px;
+  }
+  &:nth-of-type(6) {
+    filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2)) hue-rotate(30deg);
+    position: absolute;
+    bottom: 61vh;
+    right: 51.5vw;
+    height: 110px;
+    width: 200px;
+    transform: rotate(210deg);
+  }
+  &:nth-of-type(7) {
+    filter: blur(0.3px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2))
+      hue-rotate(30deg);
+    position: absolute;
+    bottom: 16vh;
+    right: 35vw;
+    height: 110px;
+    width: 200px;
+    object-fit: contain;
+    transform: rotate(35deg);
+  }
+`
+
+const FruitSlice = styled.img`
+  width: 100%;
+  height: 100%;
+`
+
 const Rotation = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -125,13 +195,13 @@ const Rotation = () => {
     setCurrentSlide((index + images.length) % images.length)
   }
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      changeImage(currentSlide + 1)
-    }, 4000)
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     changeImage(currentSlide + 1)
+  //   }, 4000)
 
-    return () => clearInterval(intervalId)
-  }, [currentSlide])
+  //   return () => clearInterval(intervalId)
+  // }, [currentSlide])
 
   return (
     <div style={{ overflow: 'hidden' }}>
@@ -151,7 +221,32 @@ const Rotation = () => {
           {/* <Logo>Buttle Juice</Logo> */}
         </BottleContainer>
         <FruitAnimated>
-          <img src={frutosRojosFruits} alt="fruits background" />
+          <FruitSlide>
+            <FruitSliceContainer>
+              <FruitSlice src={redSlice0}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer>
+              <FruitSlice src={redSlice1}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer>
+              <FruitSlice src={redSlice2}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer>
+              <FruitSlice src={redSlice3}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer>
+              <FruitSlice src={redSlice4}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer>
+              <FruitSlice src={leaf2}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer>
+              <FruitSlice src={leaf2}></FruitSlice>
+            </FruitSliceContainer>
+          </FruitSlide>
+          <FruitSlide></FruitSlide>
+          <FruitSlide></FruitSlide>
+          <FruitSlide></FruitSlide>
         </FruitAnimated>
       </Fixed>
       <Container>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 const Container = styled.footer`
   background-color: #f2f3f5;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 `
 const BodyFooter = styled.div`
   display: flex;
