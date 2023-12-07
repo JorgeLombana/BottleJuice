@@ -11,8 +11,36 @@ import redSlice0 from '../images/red-slice-2.png'
 import redSlice3 from '../images/red-slice-3.png'
 import redSlice1 from '../images/red-slice-4.png'
 import leaf2 from '../images/leaf-2.png'
+import orangeSlice0 from '../images/orange-slice-0.png'
+import orangeSlice1 from '../images/orange-slice-1.png'
+import orangeSlice2 from '../images/orange-slice-2.png'
+import orangeSlice3 from '../images/orange-slice-3.png'
+
+import appleSlice3 from '../images/apple-slice-0.png'
+import appleSlice1 from '../images/apple-slice-1.png'
+import appleSlice0 from '../images/apple-slice-2.png'
+import appleSlice2 from '../images/apple-slice-3.png'
 
 const images = [rojo, mango, pera, zanahoria]
+
+const shakeAnimation = keyframes`
+  0% { transform: translateX(0); filter:blur(1px); }
+  25% { transform: translateX(-10px); filter:blur(3px); }
+  50% { transform: translateX(10px); filter:blur(5px); }
+  75% { transform: translateX(-10px); filter:blur(3px); }
+  100% { transform: translateX(0); filter:blur(1px); }
+`
+const levitateAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`
 
 const MainContainer = styled.div`
   height: 100vh;
@@ -53,14 +81,6 @@ const BackgroundText = styled.pre`
   margin-left: -50px;
   justify-content: center;
   letter-spacing: -10px;
-`
-
-const shakeAnimation = keyframes`
-  0% { transform: translateX(0); filter:blur(1px); }
-  25% { transform: translateX(-10px); filter:blur(3px); }
-  50% { transform: translateX(10px); filter:blur(5px); }
-  75% { transform: translateX(-10px); filter:blur(3px); }
-  100% { transform: translateX(0); filter:blur(1px); }
 `
 
 const BottleContainer = styled.div`
@@ -130,7 +150,6 @@ const Fixed = styled.div`
 
 const FruitAnimatedContainer = styled.div`
   height: 100vh;
-  /* overflow: hidden; */
 `
 
 const FruitAnimated = styled.div`
@@ -149,6 +168,14 @@ const FruitSlide = styled.div`
 
 const FruitSliceContainer = styled.div`
   transition: all 0.5s ease;
+  ${(props) =>
+    props.levitation &&
+    css`
+      animation: ${levitateAnimation}
+        ${(props) => props.animationDuration || '3s'}
+        ${(props) => props.animationTiming || 'ease'} infinite;
+    `}
+  /* red fruit slices */
   &:first-of-type {
     position: absolute;
     top: ${(props) => (props.currentSlide === 0 ? '1vh' : `-30vh`)};
@@ -184,7 +211,9 @@ const FruitSliceContainer = styled.div`
     right: 20vw;
     height: 180px;
     filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
-    transform: rotate(${(props) => (props.currentSlide === 0 ? '' : '180deg')});
+    transform: rotate(
+      ${(props) => (props.currentSlide === 0 ? '100' : '180deg')}
+    );
   }
   &:nth-of-type(5) {
     filter: blur(1.5px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
@@ -196,6 +225,8 @@ const FruitSliceContainer = styled.div`
       ${(props) => (props.currentSlide === 0 ? '' : '-180deg')}
     );
   }
+
+  /* red leafs */
   &:nth-of-type(6) {
     filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2)) hue-rotate(30deg);
     position: absolute;
@@ -222,6 +253,212 @@ const FruitSliceContainer = styled.div`
     );
     z-index: -1;
   }
+
+  /* red fruit slices */
+  &:nth-of-type(8) {
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 1 ? '1vh' : `130vh`)};
+    left: 20vw;
+    height: 230px;
+    transform: rotate(
+      ${(props) => (props.currentSlide === 1 ? '0deg' : '180deg')}
+    );
+    filter: blur(0.6px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+  }
+  &:nth-of-type(9) {
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 1 ? '31vh' : `100vh`)};
+    left: -8vw;
+    height: 400px;
+    filter: blur(3px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    transform: rotate(
+      ${(props) => (props.currentSlide === 1 ? '60deg' : '-180deg')}
+    );
+  }
+  &:nth-of-type(10) {
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 1 ? '5vh' : `100vh`)};
+    right: 20vw;
+    height: 180px;
+    filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2)) blur(0.4px);
+    transform: rotate(
+      ${(props) => (props.currentSlide === 1 ? '180deg' : '-180deg')}
+    );
+  }
+  &:nth-of-type(11) {
+    filter: blur(1.5px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    position: absolute;
+    bottom: ${(props) => (props.currentSlide === 1 ? '10vh' : `-100vh`)};
+    right: -5vw;
+    height: 400px;
+    transform: rotate(
+      ${(props) => (props.currentSlide === 1 ? '-180deg' : '180deg')}
+    );
+  }
+
+  /* yellow fruit slices */
+  &:nth-of-type(12) {
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 2 ? '1vh' : `-34vh`)};
+    left: 20vw;
+    height: 230px;
+    transform: rotate(
+      ${(props) => (props.currentSlide === 2 ? '-30deg' : '180deg')}
+    );
+    filter: blur(0.6px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+  }
+  &:nth-of-type(13) {
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 2 ? '20vh' : `-65vh`)};
+    left: -8vw;
+    height: 500px;
+    filter: blur(3px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    transform: rotate(
+      ${(props) => (props.currentSlide === 2 ? '' : '-180deg')}
+    );
+  }
+  &:nth-of-type(14) {
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 2 ? '5vh' : `-30vh`)};
+    right: 20vw;
+    height: 180px;
+    filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    transform: rotate(
+      ${(props) => (props.currentSlide === 2 ? '100' : '180deg')}
+    );
+  }
+  &:nth-of-type(15) {
+    filter: blur(1.5px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    position: absolute;
+    bottom: ${(props) => (props.currentSlide === 2 ? '10vh' : `100vh`)};
+    right: -5vw;
+    height: 400px;
+    transform: rotate(
+      ${(props) => (props.currentSlide === 2 ? '' : '-180deg')}
+    );
+  }
+
+  /* green fruit slices */
+  &:nth-of-type(16) {
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 3 ? '1vh' : `130vh`)};
+    left: 20vw;
+    height: 230px;
+    transform: rotate(
+      ${(props) => (props.currentSlide === 3 ? '0deg' : '180deg')}
+    );
+    filter: blur(0.6px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+  }
+  &:nth-of-type(17) {
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 3 ? '31vh' : `100vh`)};
+    left: -8vw;
+    height: 400px;
+    filter: blur(3px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    transform: rotate(
+      ${(props) => (props.currentSlide === 3 ? '60deg' : '-180deg')}
+    );
+  }
+  &:nth-of-type(18) {
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 3 ? '5vh' : `100vh`)};
+    right: 20vw;
+    height: 180px;
+    filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2)) blur(0.4px);
+    transform: rotate(
+      ${(props) => (props.currentSlide === 3 ? '180deg' : '-180deg')}
+    );
+  }
+  &:nth-of-type(19) {
+    filter: blur(1.5px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    position: absolute;
+    bottom: ${(props) => (props.currentSlide === 3 ? '10vh' : `-100vh`)};
+    right: -5vw;
+    height: 400px;
+    transform: rotate(
+      ${(props) => (props.currentSlide === 3 ? '-180deg' : '180deg')}
+    );
+  }
+
+  /* yelow leafs */
+  &:nth-of-type(20) {
+    filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2)) hue-rotate(30deg);
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 1 ? ' 15vh' : `25vh`)};
+    right: ${(props) => (props.currentSlide === 1 ? ' 35vw' : `40vw`)};
+    height: 110px;
+    width: 200px;
+    transform: scaleX(-1)
+      rotate(${(props) => (props.currentSlide === 1 ? '220deg' : `100deg`)});
+    z-index: -1;
+  }
+  &:nth-of-type(21) {
+    filter: blur(0.3px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2))
+      hue-rotate(30deg);
+    position: absolute;
+    bottom: ${(props) => (props.currentSlide === 1 ? ' 24vh' : `30vh`)};
+    right: ${(props) => (props.currentSlide === 1 ? ' 51vw' : `45vw`)};
+    height: 110px;
+    width: 200px;
+    object-fit: contain;
+    transform: scaleX(-1)
+      rotate(${(props) => (props.currentSlide === 1 ? '35deg' : `-70deg`)});
+    z-index: -1;
+  }
+
+  /* green leafs */
+  &:nth-of-type(22) {
+    filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2)) hue-rotate(30deg);
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 2 ? ' 15vh' : `25vh`)};
+    right: ${(props) => (props.currentSlide === 2 ? ' 51.5vw' : `45vw`)};
+    height: 110px;
+    width: 200px;
+    transform: rotate(
+      ${(props) => (props.currentSlide === 2 ? '220deg' : `100deg`)}
+    );
+    z-index: -1;
+  }
+  &:nth-of-type(23) {
+    filter: blur(0.3px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2))
+      hue-rotate(30deg);
+    position: absolute;
+    bottom: ${(props) => (props.currentSlide === 2 ? ' 24vh' : `30vh`)};
+    right: ${(props) => (props.currentSlide === 2 ? ' 35vw' : `45vw`)};
+    height: 110px;
+    width: 200px;
+    object-fit: contain;
+    transform: rotate(
+      ${(props) => (props.currentSlide === 2 ? '35deg' : `-70deg`)}
+    );
+    z-index: -1;
+  }
+
+  /* carrot leafs */
+  &:nth-of-type(24) {
+    filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2)) hue-rotate(30deg);
+    position: absolute;
+    top: ${(props) => (props.currentSlide === 3 ? ' 15vh' : `25vh`)};
+    right: ${(props) => (props.currentSlide === 3 ? ' 35vw' : `40vw`)};
+    height: 110px;
+    width: 200px;
+    transform: scaleX(-1)
+      rotate(${(props) => (props.currentSlide === 3 ? '220deg' : `100deg`)});
+    z-index: -1;
+  }
+  &:nth-of-type(25) {
+    filter: blur(0.3px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2))
+      hue-rotate(30deg);
+    position: absolute;
+    bottom: ${(props) => (props.currentSlide === 3 ? ' 24vh' : `30vh`)};
+    right: ${(props) => (props.currentSlide === 3 ? ' 51vw' : `45vw`)};
+    height: 110px;
+    width: 200px;
+    object-fit: contain;
+    transform: scaleX(-1)
+      rotate(${(props) => (props.currentSlide === 3 ? '35deg' : `-70deg`)});
+    z-index: -1;
+  }
 `
 
 const FakeLogo = styled.img`
@@ -235,7 +472,6 @@ const FruitSlice = styled.img`
   width: 100%;
   height: 100%;
 `
-
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [shake, setShake] = useState(false)
@@ -245,13 +481,13 @@ const Slider = () => {
     setShake(true)
     setTimeout(() => setShake(false), 500)
   }
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      changeImage(currentSlide + 1)
-    }, 3500)
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     changeImage(currentSlide + 1)
+  //   }, 3500)
 
-    return () => clearInterval(intervalId)
-  }, [currentSlide])
+  //   return () => clearInterval(intervalId)
+  // }, [currentSlide])
 
   return (
     <MainContainer style={{ overflow: 'hidden' }}>
@@ -267,19 +503,19 @@ const Slider = () => {
 
         <FruitAnimated>
           <FruitSlide>
-            <FruitSliceContainer currentSlide={currentSlide}>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
               <FruitSlice src={redSlice0}></FruitSlice>
             </FruitSliceContainer>
-            <FruitSliceContainer currentSlide={currentSlide}>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
               <FruitSlice src={redSlice1}></FruitSlice>
             </FruitSliceContainer>
-            <FruitSliceContainer currentSlide={currentSlide}>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
               <FruitSlice src={redSlice2}></FruitSlice>
             </FruitSliceContainer>
-            <FruitSliceContainer currentSlide={currentSlide}>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
               <FruitSlice src={redSlice3}></FruitSlice>
             </FruitSliceContainer>
-            <FruitSliceContainer currentSlide={currentSlide}>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
               <FruitSlice src={redSlice4}></FruitSlice>
             </FruitSliceContainer>
             <FruitSliceContainer currentSlide={currentSlide}>
@@ -288,9 +524,67 @@ const Slider = () => {
             <FruitSliceContainer currentSlide={currentSlide}>
               <FruitSlice src={leaf2}></FruitSlice>
             </FruitSliceContainer>
-          </FruitSlide>
 
-          {/* el otro fruit slide con otro classname :v */}
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={orangeSlice0}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={orangeSlice1}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={orangeSlice2}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={orangeSlice3}></FruitSlice>
+            </FruitSliceContainer>
+
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={appleSlice0}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={appleSlice1}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={appleSlice2}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={appleSlice3}></FruitSlice>
+            </FruitSliceContainer>
+
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={orangeSlice0}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={orangeSlice1}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={orangeSlice2}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
+              <FruitSlice src={orangeSlice3}></FruitSlice>
+            </FruitSliceContainer>
+
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={leaf2}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={leaf2}></FruitSlice>
+            </FruitSliceContainer>
+
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={leaf2}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={leaf2}></FruitSlice>
+            </FruitSliceContainer>
+
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={leaf2}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={leaf2}></FruitSlice>
+            </FruitSliceContainer>
+          </FruitSlide>
         </FruitAnimated>
 
         <Arrow
