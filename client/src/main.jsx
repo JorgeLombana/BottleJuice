@@ -6,14 +6,17 @@ import { persistor, store } from './redux/store.js'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { app } from './firebase.js'
+import { StyleSheetManager } from 'styled-components'
 import loadHotjar from './hotjar.js'
 
 loadHotjar()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store} app={app}>
-    <PersistGate persistor={persistor} loading={null}>
-      <App />
-    </PersistGate>
-  </Provider>
+  <StyleSheetManager>
+    <Provider store={store}>
+      <PersistGate persistor={persistor} loading={null}>
+        <App />
+      </PersistGate>
+    </Provider>
+  </StyleSheetManager>
 )

@@ -17,6 +17,7 @@ const HeaderContainer = styled.header`
   font-weight: 500;
   width: 100%;
   z-index: 999;
+  color: rgba(0,0,0,.8);
 `
 
 const ContainerLeft = styled.div`

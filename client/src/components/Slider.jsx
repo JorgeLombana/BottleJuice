@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import rojo from '../images/rojo.png'
 import pera from '../images/pera.png'
 import mango from '../images/mango.png'
 import zanahoria from '../images/zanahoria.png'
+import logoFake from '../images/logo_fake.png'
 import redSlice2 from '../images/red-slice-0.png'
 import redSlice4 from '../images/red-slice-1.png'
 import redSlice0 from '../images/red-slice-2.png'
@@ -14,25 +15,25 @@ import leaf2 from '../images/leaf-2.png'
 const images = [rojo, mango, pera, zanahoria]
 
 const MainContainer = styled.div`
-  height: 89.5vh;
+  height: 100vh;
 `
 
 const Container = styled.div`
   height: 100%;
   width: 400vw;
   position: relative;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease;
 `
 
 const Slider_ = styled.div`
-  transform: translateX(-${(props) => props.currentSlide * 100}vw);
+  transform: translateX(-${(props) => props.slideindex * 100}vw);
   position: relative;
   display: flex;
   transition: transform 0.5s ease;
 `
 
 const Slide = styled.div`
-  height: calc(100vh - 79px);
+  height: 100vh;
   width: 100vw;
   background-color: ${(props) => props.background};
   position: relative;
@@ -54,6 +55,14 @@ const BackgroundText = styled.pre`
   letter-spacing: -10px;
 `
 
+const shakeAnimation = keyframes`
+  0% { transform: translateX(0); filter:blur(1px); }
+  25% { transform: translateX(-10px); filter:blur(3px); }
+  50% { transform: translateX(10px); filter:blur(5px); }
+  75% { transform: translateX(-10px); filter:blur(3px); }
+  100% { transform: translateX(0); filter:blur(1px); }
+`
+
 const BottleContainer = styled.div`
   display: flex;
   align-items: center;
@@ -61,6 +70,11 @@ const BottleContainer = styled.div`
   position: absolute;
   top: 0;
   left: calc(50% - 190px);
+  ${(props) =>
+    props.shake &&
+    css`
+      animation: ${shakeAnimation} 0.5s ease-in-out infinite;
+    `}
 `
 
 const BottleImg = styled.img`
@@ -96,7 +110,6 @@ const Arrow = styled.i`
 `
 
 const Logo = styled.h2`
-  /* transform: rotate(-20deg); */
   margin-top: 50px;
   position: absolute;
   z-index: 2;
@@ -115,77 +128,107 @@ const Fixed = styled.div`
   z-index: 100;
 `
 
+const FruitAnimatedContainer = styled.div`
+  height: 100vh;
+  /* overflow: hidden; */
+`
+
 const FruitAnimated = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  z-index: 1;
+  height: 100vh;
   width: 100%;
-  height: 400vh;
-  overflow-y: hidden;
+  overflow: hidden;
 `
+
 const FruitSlide = styled.div`
-  height: calc(100vh - 79px);
+  height: 100vh;
   position: relative;
 `
+
 const FruitSliceContainer = styled.div`
+  transition: all 0.5s ease;
   &:first-of-type {
     position: absolute;
-    top: 1vh;
+    top: ${(props) => (props.currentSlide === 0 ? '1vh' : `-30vh`)};
     left: 20vw;
     height: 230px;
-    transform: rotate(-30deg);
+    transform: rotate(
+      ${(props) => (props.currentSlide === 0 ? '-30deg' : '180deg')}
+    );
     filter: blur(0.6px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
   }
   &:nth-of-type(2) {
     position: absolute;
-    bottom: 1vh;
-    left: 10vw;
+    bottom: 7vh;
+    left: 20vw;
     height: 250px;
+    transform: scaleX(-1);
+    filter: blur(1.3px);
     display: none;
   }
   &:nth-of-type(3) {
     position: absolute;
-    top: 20vh;
+    top: ${(props) => (props.currentSlide === 0 ? '20vh' : `-55vh`)};
     left: -8vw;
     height: 500px;
     filter: blur(3px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    transform: rotate(
+      ${(props) => (props.currentSlide === 0 ? '' : '-180deg')}
+    );
   }
   &:nth-of-type(4) {
     position: absolute;
-    top: 5vh;
+    top: ${(props) => (props.currentSlide === 0 ? '5vh' : `-30vh`)};
     right: 20vw;
     height: 180px;
     filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    transform: rotate(${(props) => (props.currentSlide === 0 ? '' : '180deg')});
   }
   &:nth-of-type(5) {
     filter: blur(1.5px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
     position: absolute;
-    bottom: 10vh;
-    right: 1vw;
+    bottom: ${(props) => (props.currentSlide === 0 ? '10vh' : `100vh`)};
+    right: -5vw;
     height: 400px;
+    transform: rotate(
+      ${(props) => (props.currentSlide === 0 ? '' : '-180deg')}
+    );
   }
   &:nth-of-type(6) {
     filter: drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2)) hue-rotate(30deg);
     position: absolute;
-    bottom: 61vh;
-    right: 51.5vw;
+    top: ${(props) => (props.currentSlide === 0 ? ' 15vh' : `25vh`)};
+    right: ${(props) => (props.currentSlide === 0 ? ' 51.5vw' : `45vw`)};
     height: 110px;
     width: 200px;
-    transform: rotate(210deg);
+    transform: rotate(
+      ${(props) => (props.currentSlide === 0 ? '220deg' : `100deg`)}
+    );
+    z-index: -1;
   }
   &:nth-of-type(7) {
     filter: blur(0.3px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2))
       hue-rotate(30deg);
     position: absolute;
-    bottom: 16vh;
-    right: 35vw;
+    bottom: ${(props) => (props.currentSlide === 0 ? ' 24vh' : `30vh`)};
+    right: ${(props) => (props.currentSlide === 0 ? ' 35vw' : `45vw`)};
     height: 110px;
     width: 200px;
     object-fit: contain;
-    transform: rotate(35deg);
+    transform: rotate(
+      ${(props) => (props.currentSlide === 0 ? '35deg' : `-70deg`)}
+    );
+    z-index: -1;
   }
+`
+
+const FakeLogo = styled.img`
+  position: absolute;
+  z-index: 3;
+  width: 60%;
+  top: 15vh;
 `
 
 const FruitSlice = styled.img`
@@ -195,11 +238,13 @@ const FruitSlice = styled.img`
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [shake, setShake] = useState(false)
 
   const changeImage = (index) => {
     setCurrentSlide((index + images.length) % images.length)
+    setShake(true)
+    setTimeout(() => setShake(false), 500)
   }
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       changeImage(currentSlide + 1)
@@ -211,6 +256,43 @@ const Slider = () => {
   return (
     <MainContainer style={{ overflow: 'hidden' }}>
       <Fixed>
+        <BottleContainer currentSlide={currentSlide} shake={shake}>
+          <BottleImg
+            currentSlide={currentSlide}
+            src={images[currentSlide]}
+            alt="Bottle"
+          />
+          <FakeLogo src={logoFake}></FakeLogo>
+        </BottleContainer>
+
+        <FruitAnimated>
+          <FruitSlide>
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={redSlice0}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={redSlice1}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={redSlice2}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={redSlice3}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={redSlice4}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={leaf2}></FruitSlice>
+            </FruitSliceContainer>
+            <FruitSliceContainer currentSlide={currentSlide}>
+              <FruitSlice src={leaf2}></FruitSlice>
+            </FruitSliceContainer>
+          </FruitSlide>
+
+          {/* el otro fruit slide con otro classname :v */}
+        </FruitAnimated>
+
         <Arrow
           onClick={() => changeImage(currentSlide - 1)}
           direction="left"
@@ -221,41 +303,10 @@ const Slider = () => {
           direction="right"
           className="ri-arrow-right-double-line"
         />
-        <BottleContainer>
-          <BottleImg src={images[currentSlide]} alt="Bottle" />
-          {/* <Logo>Buttle Juice</Logo> */}
-        </BottleContainer>
-        <FruitAnimated>
-          <FruitSlide>
-            <FruitSliceContainer>
-              <FruitSlice src={redSlice0}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer>
-              <FruitSlice src={redSlice1}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer>
-              <FruitSlice src={redSlice2}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer>
-              <FruitSlice src={redSlice3}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer>
-              <FruitSlice src={redSlice4}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer>
-              <FruitSlice src={leaf2}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer>
-              <FruitSlice src={leaf2}></FruitSlice>
-            </FruitSliceContainer>
-          </FruitSlide>
-          <FruitSlide></FruitSlide>
-          <FruitSlide></FruitSlide>
-          <FruitSlide></FruitSlide>
-        </FruitAnimated>
       </Fixed>
+
       <Container>
-        <Slider_ currentSlide={currentSlide}>
+        <Slider_ slideindex={currentSlide}>
           <Slide name="rojos" background="#e84550">
             <BackgroundText>Green juice</BackgroundText>
           </Slide>

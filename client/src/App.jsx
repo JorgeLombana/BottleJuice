@@ -9,13 +9,13 @@ import styled from 'styled-components'
 import Footer from './components/Footer'
 import Flavors from './pages/Flavors'
 import Cart from './pages/Cart'
-import Product from './components/Product'
+
 import PromoMessage from './components/PromoMessage'
 
 export default function App() {
   return (
     <BrowserRouter>
-      <PromoMessage />
+      {/* <PromoMessage /> */}
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,13 +23,12 @@ export default function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/flavors" element={<Flavors />} />
-        <Route path="/product/:id" element={<Product />} />
+        <Route path="/flavors/1" element={<Flavors />} />
+        <Route path="/flavors/:id" element={<Flavors />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
-      <Footer />
     </BrowserRouter>
   )
 }

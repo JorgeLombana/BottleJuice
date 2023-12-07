@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { mango, pera, rojo, zanahoria } from '../images'
+import { useLocation } from 'react-router-dom'
+import { MdOutlineStar } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../redux/bazarSlice'
-import { useLocation } from 'react-router-dom'
-import productos from '../api/Api'
+import styled from 'styled-components'
 
 const Container = styled.div`
   height: 90vh;
@@ -23,16 +22,13 @@ const ImagesContainer = styled.div`
   flex: 1;
 `
 
-const ColumnImages = styled.div`
-  /* border: 1px solid red; */
-`
+const ColumnImages = styled.div``
 
 const ColumnImgContainer = styled.div`
   cursor: pointer;
   margin-bottom: 10px;
   background-color: #f7fafa;
   height: 115px;
-
   border-radius: 10px;
 `
 
@@ -48,6 +44,7 @@ const PrincipalImageContainer = styled.div`
   margin-left: 15px;
   height: 500px;
 `
+
 const MainImageRendering = styled.img`
   width: 100%;
   height: 100%;
@@ -68,9 +65,9 @@ const Title = styled.h2`
 
 const PricesContainer = styled.div``
 
-const OldPrice = styled.span``
-
-const NewPrice = styled.span``
+const NewPrice = styled.span`
+  font-size: 1.3rem;
+`
 
 const Reviews = styled.div`
   display: flex;
@@ -79,14 +76,11 @@ const Reviews = styled.div`
     font-size: 1.7rem;
     margin-right: 5px;
   }
-  span {
-  }
 `
 
 const CustomerReviews = styled.span``
 
 const Description = styled.p`
-  margin-top: 35px;
   color: rgba(0, 0, 0, 0.8);
 `
 
@@ -98,6 +92,7 @@ const AddToCartContainer = styled.div`
   justify-content: space-between;
   margin-top: 25px;
 `
+
 const AddToCartButton = styled.button`
   background-color: black;
   color: white;
@@ -107,6 +102,7 @@ const AddToCartButton = styled.button`
     margin-right: 5px;
   }
 `
+
 const CounterContainer = styled.div`
   display: flex;
   align-items: center;
@@ -117,7 +113,6 @@ const CounterContainer = styled.div`
   height: 100%;
   div {
     width: 100px;
-
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -129,11 +124,10 @@ const CounterContainer = styled.div`
     }
   }
 `
-
 const ExtraInformationContainer = styled.div`
   padding: 0 10%;
   width: 90%;
-  margin-top: 7%;
+  margin-top: 5%;
   display: flex;
   justify-content: space-between;
   p {
@@ -151,143 +145,116 @@ const ExtraInformationContainer = styled.div`
   }
 `
 
-const mangoImg = productos[0].images
-console.log(mangoImg);
+const Product = () => {
+  const dispatch = useDispatch()
+  const [details, setDetails] = useState({})
+  const [baseQty, setBaseQty] = useState(1)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const location = useLocation()
 
-const Flavors = () => {
-  const [selectedImage, setSelectedImage] = useState(mango)
-  const [quantity, setQuantity] = useState(0)
+  useEffect(() => {
+    setDetails(location.state.item)
+  }, [location])
 
-  const changeImage = (newImage) => {
-    setSelectedImage(newImage)
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        _id: details._id,
+        title: details.title,
+        image: details.images[selectedImageIndex] || details.image,
+        price: details.price,
+        quantity: baseQty,
+        description: details.description,
+      })
+    )
   }
 
-  const decrementQuantity = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1)
-    }
+  const changeImage = (index) => {
+    setSelectedImageIndex(index)
   }
 
-  const incrementQuantity = () => {
-    setQuantity(quantity + 1)
-  }
   return (
-    <>
-      <Container>
-        <ProductContainer>
-          <ImagesContainer>
-            <ColumnImages>
-              <ColumnImgContainer>
-                <ImgColumn
-                  onClick={() => {
-                    changeImage(mango)
-                  }}
-                  src={mango}
-                  alt="product mango flavor"
-                />
-              </ColumnImgContainer>
-
-              <ColumnImgContainer>
-                <ImgColumn
-                  onClick={() => {
-                    changeImage(pera)
-                  }}
-                  src={pera}
-                  alt="product pera flavor"
-                />
-              </ColumnImgContainer>
-              <ColumnImgContainer>
-                <ImgColumn
-                  onClick={() => {
-                    changeImage(zanahoria)
-                  }}
-                  src={zanahoria}
-                  alt="product zanahoria flavor"
-                />
-              </ColumnImgContainer>
-              <ColumnImgContainer>
-                <ImgColumn
-                  onClick={() => {
-                    changeImage(rojo)
-                  }}
-                  src={rojo}
-                  alt="product rojo flavor"
-                />
-              </ColumnImgContainer>
-            </ColumnImages>
-
-            <PrincipalImageContainer className="transition: all duration-500 ease-in-out;">
+    <Container>
+      <ProductContainer>
+        <ImagesContainer>
+          <ColumnImages>
+            <ColumnImgContainer>
+              {details.images &&
+                details.images.map((image, index) => (
+                  <ImgColumn
+                    key={index}
+                    onClick={() => changeImage(index)}
+                    src={image}
+                    alt={`product image ${index + 1}`}
+                  />
+                ))}
+            </ColumnImgContainer>
+          </ColumnImages>
+          <PrincipalImageContainer>
+            {details.images && details.images.length > 0 && (
               <MainImageRendering
-                className="transition: all duration-500 ease-in-out;"
-                src={selectedImage}
+                src={details.images[selectedImageIndex] || details.image}
                 alt="Selected product flavor"
               />
-            </PrincipalImageContainer>
-          </ImagesContainer>
+            )}
+          </PrincipalImageContainer>
+        </ImagesContainer>
 
-          <ProductDescription>
-            <Title>Bottle Juice mango 300ml improved blood circulation</Title>
+        <ProductDescription>
+          <Title>{details.title}</Title>
+          <PricesContainer></PricesContainer>
+          <Reviews>
+            <i className="ri-star-fill"></i>
+            <i className="ri-star-fill"></i>
+            <i className="ri-star-fill"></i>
+            <i className="ri-star-fill"></i>
+            <i className="ri-star-fill"></i>
+            <CustomerReviews>(1 customer review)</CustomerReviews>
+          </Reviews>
+          <NewPrice>${details.price}</NewPrice>
+          <Description>{details.description}</Description>
 
-            <PricesContainer>
-              <OldPrice></OldPrice>
-              <NewPrice></NewPrice>
-            </PricesContainer>
-
-            <Reviews>
-              <i className="ri-star-fill"></i>
-              <i className="ri-star-fill"></i>
-              <i className="ri-star-fill"></i>
-              <i className="ri-star-fill"></i>
-              <i className="ri-star-fill"></i>
-              <CustomerReviews>(2 customer reviews)</CustomerReviews>
-            </Reviews>
-
-            <Description>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi
-              minima ullam consectetur necessitatibus repellat, voluptatibus,
-              modi eaque culpa quia neque similique quidem perferendis iste
-              saepe consequuntur eveniet, aliquam totam sapiente?
-            </Description>
-
-            <AddToCartContainer>
-              <CounterContainer>
-                <span>Quantity</span>
-                <div>
-                  <button onClick={decrementQuantity}>-</button>
-                  <span>{quantity}</span>
-                  <button onClick={incrementQuantity}>+</button>
-                </div>
-              </CounterContainer>
-
-              <AddToCartButton>
-                <span>Add to cart</span>
-                <i className="ri-arrow-right-up-line"></i>
-              </AddToCartButton>
-            </AddToCartContainer>
-
-            <ExtraInformationContainer>
+          <AddToCartContainer>
+            <CounterContainer>
+              <span>Quantity</span>
               <div>
-                <i className="ri-truck-line"></i>
-                <p>Free shipping</p>
+                <button
+                  onClick={() => setBaseQty(baseQty === 1 ? 1 : baseQty - 1)}
+                >
+                  -
+                </button>
+                {baseQty}
+                <button onClick={() => setBaseQty(baseQty + 1)}>+</button>
               </div>
-              <div>
-                <i className="ri-inbox-unarchive-line"></i>
-                <p>National Shipping</p>
-              </div>
-              <div>
-                <i className="ri-file-list-3-line"></i>
-                <p>ready to order</p>
-              </div>
-              {/* <div>
+            </CounterContainer>
+
+            <AddToCartButton onClick={handleAddToCart}>
+              <span>Add to cart</span>
+              <i className="ri-arrow-right-up-line"></i>
+            </AddToCartButton>
+          </AddToCartContainer>
+          <ExtraInformationContainer>
+            <div>
+              <i className="ri-truck-line"></i>
+              <p>Free shipping</p>
+            </div>
+            <div>
+              <i className="ri-inbox-unarchive-line"></i>
+              <p>National Shipping</p>
+            </div>
+            <div>
+              <i className="ri-file-list-3-line"></i>
+              <p>ready to order</p>
+            </div>
+            {/* <div>
                 <i className="ri-money-dollar-circle-line"></i>
                 <p>Payment methods</p>
               </div> */}
-            </ExtraInformationContainer>
-          </ProductDescription>
-        </ProductContainer>
-      </Container>
-    </>
+          </ExtraInformationContainer>
+        </ProductDescription>
+      </ProductContainer>
+    </Container>
   )
 }
 
-export default Flavors
+export default Product

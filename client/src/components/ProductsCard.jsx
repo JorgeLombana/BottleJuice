@@ -157,7 +157,7 @@ const ProductsCard = ({ product }) => {
   const rootId = idString(_id)
 
   const handleDetails = () => {
-    navigate(`/product/${rootId}`, {
+    navigate(`/flavors/${rootId}`, {
       state: {
         item: product,
       },
