@@ -6,6 +6,12 @@ import { persistor, store } from './redux/store.js'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { app } from './firebase.js'
+import Hotjar from '@hotjar/browser'
+
+const siteId = 3747718
+const hotjarVersion = 6
+
+Hotjar.init(siteId, hotjarVersion)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store} app={app}>

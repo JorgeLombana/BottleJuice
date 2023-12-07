@@ -81,7 +81,6 @@ const Reviews = styled.div`
 const CustomerReviews = styled.span``
 
 const Description = styled.p`
-
   color: rgba(0, 0, 0, 0.8);
 `
 
@@ -231,6 +230,7 @@ const Product = () => {
 
             <AddToCartButton onClick={handleAddToCart}>
               <span>Add to cart</span>
+              <i className="ri-arrow-right-up-line"></i>
             </AddToCartButton>
           </AddToCartContainer>
           <ExtraInformationContainer>

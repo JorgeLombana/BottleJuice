@@ -13,14 +13,18 @@ import leaf2 from '../images/leaf-2.png'
 
 const images = [rojo, mango, pera, zanahoria]
 
+const MainContainer = styled.div`
+  height: 89.5vh;
+`
+
 const Container = styled.div`
-  height: calc(100vh - 79px);
+  height: 100%;
   width: 400vw;
   position: relative;
   transition: transform 0.5s ease-in-out;
 `
 
-const Slider = styled.div`
+const Slider_ = styled.div`
   transform: translateX(-${(props) => props.currentSlide * 100}vw);
   position: relative;
   display: flex;
@@ -107,7 +111,7 @@ const Logo = styled.h2`
 const Fixed = styled.div`
   position: absolute;
   width: 98.9vw;
-  height: calc(100vh - 79px);
+  height: 100%;
   z-index: 100;
 `
 
@@ -119,6 +123,7 @@ const FruitAnimated = styled.div`
   z-index: 1;
   width: 100%;
   height: 400vh;
+  overflow-y: hidden;
 `
 const FruitSlide = styled.div`
   height: calc(100vh - 79px);
@@ -131,7 +136,7 @@ const FruitSliceContainer = styled.div`
     left: 20vw;
     height: 230px;
     transform: rotate(-30deg);
-    filter: blur(.6px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
+    filter: blur(0.6px) drop-shadow(25px 9px 7px rgba(0, 0, 0, 0.2));
   }
   &:nth-of-type(2) {
     position: absolute;
@@ -188,23 +193,23 @@ const FruitSlice = styled.img`
   height: 100%;
 `
 
-const Rotation = () => {
+const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const changeImage = (index) => {
     setCurrentSlide((index + images.length) % images.length)
   }
 
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     changeImage(currentSlide + 1)
-  //   }, 4000)
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      changeImage(currentSlide + 1)
+    }, 3500)
 
-  //   return () => clearInterval(intervalId)
-  // }, [currentSlide])
+    return () => clearInterval(intervalId)
+  }, [currentSlide])
 
   return (
-    <div style={{ overflow: 'hidden' }}>
+    <MainContainer style={{ overflow: 'hidden' }}>
       <Fixed>
         <Arrow
           onClick={() => changeImage(currentSlide - 1)}
@@ -250,8 +255,8 @@ const Rotation = () => {
         </FruitAnimated>
       </Fixed>
       <Container>
-        <Slider currentSlide={currentSlide}>
-          <Slide name="rojos" background="#c62d37">
+        <Slider_ currentSlide={currentSlide}>
+          <Slide name="rojos" background="#e84550">
             <BackgroundText>Green juice</BackgroundText>
           </Slide>
           <Slide name="mango" background="#f9b637">
@@ -263,10 +268,10 @@ const Rotation = () => {
           <Slide name="zanahoriaF" background="#e85d40">
             <BackgroundText>Green juice</BackgroundText>
           </Slide>
-        </Slider>
+        </Slider_>
       </Container>
-    </div>
+    </MainContainer>
   )
 }
 
-export default Rotation
+export default Slider

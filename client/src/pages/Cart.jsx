@@ -252,8 +252,8 @@ const Cart = () => {
             Please go back to Shopping and add products to Cart.
           </EmptyCartText>
           <Link to="/">
-            <GoShoppingButton to="/">
-              <span style={{ transition: 'all 0.5s ease-in-out' }}>
+            <GoShoppingButton style={{ transition: 'transform 0.5s ease-in-out' }} to="/">
+              <span style={{ transition: 'transform 0.5s ease-in-out' }}>
                 <HiOutlineArrowLeftStyled />
               </span>
               Go shopping
