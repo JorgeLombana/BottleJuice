@@ -481,13 +481,13 @@ const Slider = () => {
     setShake(true)
     setTimeout(() => setShake(false), 500)
   }
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     changeImage(currentSlide + 1)
-  //   }, 3500)
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      changeImage(currentSlide + 1)
+    }, 3500)
 
-  //   return () => clearInterval(intervalId)
-  // }, [currentSlide])
+    return () => clearInterval(intervalId)
+  }, [currentSlide])
 
   return (
     <MainContainer style={{ overflow: 'hidden' }}>
