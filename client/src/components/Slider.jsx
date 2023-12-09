@@ -20,6 +20,7 @@ import appleSlice3 from '../images/apple-slice-0.png'
 import appleSlice1 from '../images/apple-slice-1.png'
 import appleSlice0 from '../images/apple-slice-2.png'
 import appleSlice2 from '../images/apple-slice-3.png'
+import { Link } from 'react-router-dom'
 
 const images = [rojo, mango, pera, zanahoria]
 
@@ -43,7 +44,8 @@ const levitateAnimation = keyframes`
 `
 
 const MainContainer = styled.div`
-  height: 100vh;
+  height: calc(100vh - 49px);
+  width: 100vw;
 `
 
 const Container = styled.div`
@@ -61,11 +63,15 @@ const Slider_ = styled.div`
 `
 
 const Slide = styled.div`
-  height: 100vh;
+  height: calc(100vh - 49px);
   width: 100vw;
   background-color: ${(props) => props.background};
   position: relative;
   color: white;
+
+  @media screen {
+     
+  }
 `
 
 const BackgroundText = styled.pre`
@@ -129,52 +135,35 @@ const Arrow = styled.i`
   }
 `
 
-const Logo = styled.h2`
-  margin-top: 50px;
-  position: absolute;
-  z-index: 2;
-  font-family: 'Oswald', sans-serif;
-  font-size: 2.5rem;
-  color: white;
-  letter-spacing: -1px;
-  font-weight: 800;
-  text-transform: uppercase;
-`
-
 const Fixed = styled.div`
   position: absolute;
-  width: 98.9vw;
-  height: 100%;
+  width: 100vw;
   z-index: 100;
-`
-
-const FruitAnimatedContainer = styled.div`
-  height: 100vh;
 `
 
 const FruitAnimated = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: calc(100vh - 49px);
   width: 100%;
   overflow: hidden;
 `
 
 const FruitSlide = styled.div`
-  height: 100vh;
+  height: calc(100vh - 49px);
   position: relative;
 `
 
 const FruitSliceContainer = styled.div`
   transition: all 0.5s ease;
-  ${(props) =>
+  /* ${(props) =>
     props.levitation &&
     css`
       animation: ${levitateAnimation}
         ${(props) => props.animationDuration || '3s'}
         ${(props) => props.animationTiming || 'ease'} infinite;
-    `}
+    `} */
   /* red fruit slices */
   &:first-of-type {
     position: absolute;
@@ -254,7 +243,7 @@ const FruitSliceContainer = styled.div`
     z-index: -1;
   }
 
-  /* red fruit slices */
+  /* yellow fruit slices */
   &:nth-of-type(8) {
     position: absolute;
     top: ${(props) => (props.currentSlide === 1 ? '1vh' : `130vh`)};
@@ -484,110 +473,163 @@ const Slider = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       changeImage(currentSlide + 1)
-    }, 3500)
+    }, 2800)
 
     return () => clearInterval(intervalId)
   }, [currentSlide])
 
+  //puedo tratar de hacer un wrapper al container de las imagenes y a el aplicarle la rotación
   return (
-    <MainContainer style={{ overflow: 'hidden' }}>
-      <Fixed>
-        <BottleContainer currentSlide={currentSlide} shake={shake}>
-          <BottleImg
-            currentSlide={currentSlide}
-            src={images[currentSlide]}
-            alt="Bottle"
-          />
-          <FakeLogo src={logoFake}></FakeLogo>
-        </BottleContainer>
+    <Link to="/products">
+      <MainContainer style={{ overflow: 'hidden' }}>
+        <Fixed>
+          <BottleContainer currentSlide={currentSlide} shake={shake}>
+            <BottleImg
+              currentSlide={currentSlide}
+              src={images[currentSlide]}
+              alt="Bottle"
+            />
+            <FakeLogo src={logoFake}></FakeLogo>
+          </BottleContainer>
 
-        <FruitAnimated>
-          <FruitSlide>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={redSlice0}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={redSlice1}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={redSlice2}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={redSlice3}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={redSlice4}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer currentSlide={currentSlide}>
-              <FruitSlice src={leaf2}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer currentSlide={currentSlide}>
-              <FruitSlice src={leaf2}></FruitSlice>
-            </FruitSliceContainer>
+          <FruitAnimated>
+            <FruitSlide>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={redSlice0}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={redSlice1}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={redSlice2}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={redSlice3}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={redSlice4}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer currentSlide={currentSlide}>
+                <FruitSlice src={leaf2}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer currentSlide={currentSlide}>
+                <FruitSlice src={leaf2}></FruitSlice>
+              </FruitSliceContainer>
 
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={orangeSlice0}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={orangeSlice1}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={orangeSlice2}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={orangeSlice3}></FruitSlice>
-            </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={orangeSlice0}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={orangeSlice1}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={orangeSlice2}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={orangeSlice3}></FruitSlice>
+              </FruitSliceContainer>
 
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={appleSlice0}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={appleSlice1}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={appleSlice2}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={appleSlice3}></FruitSlice>
-            </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={appleSlice0}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={appleSlice1}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={appleSlice2}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={appleSlice3}></FruitSlice>
+              </FruitSliceContainer>
 
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={orangeSlice0}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={orangeSlice1}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={orangeSlice2}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer levitation="true" currentSlide={currentSlide}>
-              <FruitSlice src={orangeSlice3}></FruitSlice>
-            </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={orangeSlice0}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={orangeSlice1}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={orangeSlice2}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer
+                levitation="true"
+                currentSlide={currentSlide}
+              >
+                <FruitSlice src={orangeSlice3}></FruitSlice>
+              </FruitSliceContainer>
 
-            <FruitSliceContainer currentSlide={currentSlide}>
-              <FruitSlice src={leaf2}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer currentSlide={currentSlide}>
-              <FruitSlice src={leaf2}></FruitSlice>
-            </FruitSliceContainer>
+              <FruitSliceContainer currentSlide={currentSlide}>
+                <FruitSlice src={leaf2}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer currentSlide={currentSlide}>
+                <FruitSlice src={leaf2}></FruitSlice>
+              </FruitSliceContainer>
 
-            <FruitSliceContainer currentSlide={currentSlide}>
-              <FruitSlice src={leaf2}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer currentSlide={currentSlide}>
-              <FruitSlice src={leaf2}></FruitSlice>
-            </FruitSliceContainer>
+              <FruitSliceContainer currentSlide={currentSlide}>
+                <FruitSlice src={leaf2}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer currentSlide={currentSlide}>
+                <FruitSlice src={leaf2}></FruitSlice>
+              </FruitSliceContainer>
 
-            <FruitSliceContainer currentSlide={currentSlide}>
-              <FruitSlice src={leaf2}></FruitSlice>
-            </FruitSliceContainer>
-            <FruitSliceContainer currentSlide={currentSlide}>
-              <FruitSlice src={leaf2}></FruitSlice>
-            </FruitSliceContainer>
-          </FruitSlide>
-        </FruitAnimated>
+              <FruitSliceContainer currentSlide={currentSlide}>
+                <FruitSlice src={leaf2}></FruitSlice>
+              </FruitSliceContainer>
+              <FruitSliceContainer currentSlide={currentSlide}>
+                <FruitSlice src={leaf2}></FruitSlice>
+              </FruitSliceContainer>
+            </FruitSlide>
+          </FruitAnimated>
 
-        <Arrow
+          {/* <Arrow
           onClick={() => changeImage(currentSlide - 1)}
           direction="left"
           className="ri-arrow-left-double-line"
@@ -596,26 +638,27 @@ const Slider = () => {
           onClick={() => changeImage(currentSlide + 1)}
           direction="right"
           className="ri-arrow-right-double-line"
-        />
-      </Fixed>
+        /> */}
+        </Fixed>
 
-      <Container>
-        <Slider_ slideindex={currentSlide}>
-          <Slide name="rojos" background="#e84550">
-            <BackgroundText>Green juice</BackgroundText>
-          </Slide>
-          <Slide name="mango" background="#f9b637">
-            <BackgroundText>Green juice</BackgroundText>
-          </Slide>
-          <Slide name="pera" background="#d3dc99">
-            <BackgroundText>Green juice</BackgroundText>
-          </Slide>
-          <Slide name="zanahoriaF" background="#e85d40">
-            <BackgroundText>Green juice</BackgroundText>
-          </Slide>
-        </Slider_>
-      </Container>
-    </MainContainer>
+        <Container>
+          <Slider_ slideindex={currentSlide}>
+            <Slide name="rojos" background="#e84550">
+              <BackgroundText>Green juice</BackgroundText>
+            </Slide>
+            <Slide name="mango" background="#f9b637">
+              <BackgroundText>Green juice</BackgroundText>
+            </Slide>
+            <Slide name="pera" background="#d3dc99">
+              <BackgroundText>Green juice</BackgroundText>
+            </Slide>
+            <Slide name="zanahoriaF" background="#e85d40">
+              <BackgroundText>Green juice</BackgroundText>
+            </Slide>
+          </Slider_>
+        </Container>
+      </MainContainer>
+    </Link>
   )
 }
 

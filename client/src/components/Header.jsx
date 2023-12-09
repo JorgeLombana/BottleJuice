@@ -17,7 +17,7 @@ const HeaderContainer = styled.header`
   font-weight: 500;
   width: 100%;
   z-index: 999;
-  color: rgba(0,0,0,.8);
+  color: rgba(0, 0, 0, 0.8);
 `
 
 const ContainerLeft = styled.div`
@@ -241,7 +241,7 @@ const CartProduct = styled.span`
   color: white;
   margin-left: -15px;
   top: -8px;
-  left:28px;
+  left: 28px;
   padding-top: 1px;
 `
 
@@ -294,13 +294,13 @@ export default function Header() {
 
         <ContainerRight>
           <UnordedList>
-            <Link to="/">
+            <Link to="/contact">
               <li>Contact us</li>
             </Link>
-            <Link to="/flavors">
-              <li>Flavors</li>
+            <Link to="/products">
+              <li>Products</li>
             </Link>
-            <Link to="/flavors">
+            <Link to="/products">
               <i className="ri-search-line" style={{ fontSize: 18 }}></i>
             </Link>
             <Link to="/cart">
@@ -374,24 +374,26 @@ export default function Header() {
           <li>Home</li>
         </Link>
 
+        <Link to="/products" onClick={closeMenu}>
+          <li>Products</li>
+        </Link>
+
+        <Link to="/cart" onClick={closeMenu}>
+          <li>Shopping cart</li>
+        </Link>
+
+        <Link to="/contact" onClick={closeMenu}>
+          <li>Contact us</li>
+        </Link>
+
+        <Link to="/reviews" onClick={closeMenu}>
+          <li>Reviews</li>
+        </Link>
+        
         <Link to="/about" onClick={closeMenu}>
           <li>About</li>
         </Link>
 
-        <Link to="/reviews" onClick={closeMenu}>
-          <li>Contact</li>
-        </Link>
-
-        {/* pendiente */}
-        <Link to="/reviews" onClick={closeMenu}>
-          <li>Reviews</li>
-        </Link>
-        <Link to="/" onClick={closeMenu}>
-          <li>Contact us</li>
-        </Link>
-        <Link to="/flavors" onClick={closeMenu}>
-          <li>Flavors</li>
-        </Link>
       </UnordedListMobile>
     </HeaderContainer>
   )

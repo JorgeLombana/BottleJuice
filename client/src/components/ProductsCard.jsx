@@ -8,7 +8,7 @@ import { toast, Toaster } from 'sonner'
 const ImageContainer = styled.div`
   position: relative;
   overflow: hidden;
-  height: 70%;
+  height: 75%;
   padding: 10px 0;
   display: flex;
   justify-content: center;
@@ -39,8 +39,8 @@ const ImageContainer = styled.div`
 
 const CardWrapper = styled.div`
   cursor: pointer;
-  width: 300px;
-  height: 500px;
+  width: 330px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
@@ -48,13 +48,13 @@ const CardWrapper = styled.div`
     ${ImageContainer} {
       :nth-child(1) {
         filter: drop-shadow(-10px 5px 7px rgba(0, 0, 0, 0.2));
-        transform: rotate(5deg) scale(1.2);
+        transform: rotate(5deg) scale(1.15);
       }
       :nth-child(2) {
-        top: 5px;
+        top: -5px;
       }
       :nth-child(3) {
-        bottom: 5px;
+        bottom: -5px;
       }
     }
   }
@@ -66,7 +66,7 @@ const ProductImage = styled.img`
   z-index: 1;
 `
 const DetailsContainer = styled.div`
-  height: 30%;
+  height: 25%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -129,7 +129,7 @@ const Buttons = styled.div`
 const BackgroundTextImg = styled.p`
   position: absolute;
   color: white;
-  font-size: 4.1rem;
+  font-size: 5.3rem;
   font-weight: 1000;
   text-transform: uppercase;
   z-index: 0;
@@ -140,7 +140,7 @@ const BackgroundTextImg = styled.p`
 const BackgroundTextImg2 = styled.p`
   position: absolute;
   color: white;
-  font-size: 4.1rem;
+  font-size: 5.3rem;
   font-weight: 1000;
   text-transform: uppercase;
   z-index: 0;
@@ -178,55 +178,57 @@ const ProductsCard = ({ product }) => {
     toast.error(`${product.title.substring(0, 23).toLowerCase()} is added`)
   }
   return (
-    <CardWrapper>
-      <ImageContainer productid={product._id} onClick={handleDetails}>
-        <ProductImage
-          className="product-image"
-          src={product.image}
-          alt="productImg"
-        />
-        <BackgroundTextImg>
-          {product.title.substring(12, 19)}
-          {product.title.substring(12, 19)}
-        </BackgroundTextImg>
-        <BackgroundTextImg2>
-          {product.title.substring(12, 19)}
-          {product.title.substring(12, 19)}
-        </BackgroundTextImg2>
-      </ImageContainer>
+    <>
       <Toaster position="bottom-left" expand={true} />
+      <CardWrapper>
+        <ImageContainer productid={product._id} onClick={handleDetails}>
+          <ProductImage
+            className="product-image"
+            src={product.image}
+            alt="productImg"
+          />
+          <BackgroundTextImg>
+            {product.title.substring(12, 19)}
+            {product.title.substring(12, 19)}
+          </BackgroundTextImg>
+          <BackgroundTextImg2>
+            {product.title.substring(12, 19)}
+            {product.title.substring(12, 19)}
+          </BackgroundTextImg2>
+        </ImageContainer>
 
-      <DetailsContainer>
-        <TitleContainer>
-          <Title>{product.title.substring(0, 25)}</Title>
-        </TitleContainer>
-        <PriceContainer>
-          <p className="line-through ">${product.oldPrice}</p>
+        <DetailsContainer>
+          <TitleContainer>
+            <Title>{product.title.substring(0, 25)}</Title>
+          </TitleContainer>
+          <PriceContainer>
+            <p className="line-through ">${product.oldPrice}</p>
 
-          <p>${product.price}</p>
-        </PriceContainer>
-        <Buttons>
-          <button onClick={handleDetails}>
-            Details
-            <div
-              className="details"
-              style={{ transition: 'transform 0.3s ease-in-out' }}
-            >
-              <i className="ri-arrow-up-line"></i>
-            </div>
-          </button>
-          <button className="add-to-cart" onClick={handleAddToCart}>
-            Add to cart
-            <div
-              className="cart"
-              style={{ transition: 'transform 0.3s ease-in-out' }}
-            >
-              <i className="ri-arrow-right-up-line"></i>
-            </div>
-          </button>
-        </Buttons>
-      </DetailsContainer>
-    </CardWrapper>
+            <p>${product.price}</p>
+          </PriceContainer>
+          <Buttons>
+            <button onClick={handleDetails}>
+              Details
+              <div
+                className="details"
+                style={{ transition: 'transform 0.3s ease-in-out' }}
+              >
+                <i className="ri-arrow-up-line"></i>
+              </div>
+            </button>
+            <button className="add-to-cart" onClick={handleAddToCart}>
+              Add to cart
+              <div
+                className="cart"
+                style={{ transition: 'transform 0.3s ease-in-out' }}
+              >
+                <i className="ri-arrow-right-up-line"></i>
+              </div>
+            </button>
+          </Buttons>
+        </DetailsContainer>
+      </CardWrapper>
+    </>
   )
 }
 
