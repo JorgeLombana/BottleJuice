@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 import styled from 'styled-components'
 import SocialMedia from './SocialMedia'
 import Logo from './Logo'
@@ -13,10 +14,21 @@ const BodyFooter = styled.div`
   align-items: center;
   justify-content: center;
   height: 170px;
-  padding: 0 30px;
+  padding: 0 20px;
   gap: 40px;
   i {
     color: rgba(0, 0, 0, 0.7);
+  }
+
+  @media screen and (max-width: 1100px) {
+    padding:0 15px ;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  @media screen and (max-width: 520px) {
+    flex-direction: column;
+    text-align: center;
   }
 `
 
@@ -27,10 +39,23 @@ const Copyright = styled.div`
   padding: 5px 0px;
 `
 const FooterSections = styled.div`
-  padding: 20px;
+  padding: 15px;
+
+  @media screen and (max-width: 1100px) {
+    padding:10px ;
+    min-width: 180px;
+  }
+
+  @media screen and (max-width: 660px) {
+    margin:auto;
+  }
 `
 const StartupInfo = styled.div`
-  padding: 20px;
+  padding: 15px;
+  
+  @media screen and (max-width: 500px) {
+    padding:10px ;
+  }
 `
 
 const FooterTitles = styled.div`
@@ -40,6 +65,11 @@ const FooterTitles = styled.div`
 
 const UnordedList = styled.ul`
   list-style-type: none;
+
+  @media screen and (max-width: 515px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 const ContactLink = styled.div`
@@ -48,11 +78,20 @@ const ContactLink = styled.div`
   i {
     color: black;
   }
+  
+  @media screen and (max-width: 515px) {
+    display: ${(props) => (props.expanded ? 'block' : 'none')};
+    float: left;
+  }
+
 `
 
 const StyledLInk = styled(Link)`
-  display: flex;
-`
+  @media screen and (max-width: 515px) {
+    display: ${(props) => (props.expanded ? 'block' : 'none')};
+    float: left;
+  }
+`;
 
 const PersonalizedButton = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -66,14 +105,18 @@ const PersonalizedButton = styled.button`
 const Input = styled.input`
   padding: 10px;
   height: 40px;
-  width: 220px;
+  width: 200px;
   border: 1px solid rgba(0, 0, 0, 0.3);
 `
 
 const Footer = () => {
+  const [isExpanded, setExpanded] = useState(false);
   return (
     <Container>
-      <BodyFooter>
+      <BodyFooter
+        onMouseEnter={() => setExpanded(true)}
+        onMouseLeave={() => setExpanded(false)}
+      >
         <StartupInfo>
           <Logo />
           <div>
@@ -85,18 +128,18 @@ const Footer = () => {
         <FooterSections>
           <FooterTitles>Quick Links</FooterTitles>
           <UnordedList>
-            <StyledLInk to="/">
+          <StyledLInk to="/" expanded={isExpanded}>
               <li>
                 Home
                 <i className="ri-arrow-right-up-line" />
               </li>
             </StyledLInk>
-            <StyledLInk to="/about">
+            <StyledLInk to="/about" expanded={isExpanded}>
               <li>
                 About <i className="ri-arrow-right-up-line" />
               </li>
             </StyledLInk>
-            <StyledLInk to="/reviews">
+            <StyledLInk to="/reviews" expanded={isExpanded}>
               <li>
                 Reviews <i className="ri-arrow-right-up-line" />
               </li>
@@ -107,17 +150,17 @@ const Footer = () => {
         <FooterSections>
           <FooterTitles>Policies</FooterTitles>
           <UnordedList>
-            <StyledLInk to="/">
+            <StyledLInk to="/" expanded={isExpanded}>
               <li>
                 Privacy Policy <i className="ri-arrow-right-up-line"></i>
               </li>
             </StyledLInk>
-            <StyledLInk to="/">
+            <StyledLInk to="/" expanded={isExpanded}>
               <li>
                 Terms and Conditions <i className="ri-arrow-right-up-line"></i>
               </li>
             </StyledLInk>
-            <StyledLInk to="/">
+            <StyledLInk to="/" expanded={isExpanded}>
               <li>
                 Return Policy <i className="ri-arrow-right-up-line"></i>
               </li>
@@ -127,15 +170,15 @@ const Footer = () => {
 
         <FooterSections>
           <FooterTitles>Contact</FooterTitles>
-          <ContactLink>
+          <ContactLink expanded={isExpanded}>
             <i className="ri-map-pin-2-line"></i>
             <span>Carrera 1 #5-21, Garzón, Huila</span>
           </ContactLink>
-          <ContactLink>
+          <ContactLink expanded={isExpanded}>
             <i className="ri-phone-line"></i>
             <span>3132742352</span>
           </ContactLink>
-          <ContactLink>
+          <ContactLink expanded={isExpanded}>
             <i className="ri-mail-send-line"></i>
             <span>bottlejuice@gmail.com</span>
           </ContactLink>
