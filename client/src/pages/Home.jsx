@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import productsJson from '../api/Api'
 import ProductsCard from '../components/ProductsCard'
-import Slider from '../components/Slider'
+import Slider from '../components/slider/Slider'
 import Header from '../components/Header'
 
 const Container = styled.div`

@@ -120,7 +120,7 @@ const moveRight = keyframes`
 `
 
 const Container = styled.div`
-  background: linear-gradient(rgba(231, 231, 227, .4),rgba(231, 231, 227, 1));
+  background: linear-gradient(rgba(231, 231, 227, 0.4), rgba(231, 231, 227, 1));
   height: calc(100vh - 49px);
   display: flex;
   flex-direction: column;
@@ -148,7 +148,6 @@ const Row = styled.div`
   &:nth-of-type(2) {
     animation: ${moveLeft} 200s linear infinite;
     transition: 3s ease-in-out;
-    /* transform: translateX(-315%); */
   }
 `
 
