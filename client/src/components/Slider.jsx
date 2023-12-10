@@ -70,7 +70,6 @@ const Slide = styled.div`
   color: white;
 
   @media screen {
-     
   }
 `
 
