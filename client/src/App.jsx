@@ -16,10 +16,9 @@ import Reviews from './pages/Reviews'
 import ContactUs from './pages/ContactUs'
 import Products from './pages/Products'
 
-// container to wrap the content
 const Container = styled.div``
 
-// Create a higher-order component to conditionally render header and footer
+
 const withLayout = (Component, showHeader = true, showFooter = true) => {
   return (props) => (
     <Container>

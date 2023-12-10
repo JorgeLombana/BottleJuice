@@ -276,7 +276,7 @@ const About = () => {
               {Array.from({ length: 4 }).map((_, columnIndex) => (
                 <Column key={columnIndex}>
                   {columnIndex === 2 || columnIndex === 3
-                    ? // Invertir el orden para las columnas 3 y 4
+                    ?
                       images
                         .slice()
                         .reverse()
@@ -285,7 +285,7 @@ const About = () => {
                             <Image src={imageUrl} alt={`Image ${index + 1}`} />
                           </div>
                         ))
-                    : // Mantener el orden normal para las otras columnas
+                    :
                       images.map((imageUrl, index) => (
                         <div key={index}>
                           <Image src={imageUrl} alt={`Image ${index + 1}`} />
