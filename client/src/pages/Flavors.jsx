@@ -6,7 +6,13 @@ import { addToCart } from '../redux/bazarSlice'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  height: 90vh;
+  height: calc(100vh - 49px);
+  @media screen and (max-width: 1280px) {
+    height: auto;
+  }
+  @media screen and (max-width: 525px) {
+    overflow: hidden;
+  }
 `
 
 const ProductContainer = styled.div`
@@ -14,12 +20,39 @@ const ProductContainer = styled.div`
   width: 70vw;
   margin-inline: auto;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 1280px) {
+    width: 90vw;
+  }
+  @media screen and (max-width: 1023px) {
+    width: 90vw;
+    flex-direction: column;
+  }
+  @media screen and (max-width: 749px) {
+    width: auto;
+    margin-inline: none;
+    padding-top: 10vh;
+    justify-content: center;
+    gap: 10vh;
+  }
 `
 
 const ImagesContainer = styled.div`
   display: flex;
   justify-content: center;
   flex: 1;
+  min-width: 500px;
+  margin-inline: auto;
+  @media screen and (max-width: 1280px) {
+    width: 40%;
+  }
+  @media screen and (max-width: 724px) {
+    width: 400px;
+  }
+  @media screen and (max-width: 610px) {
+    width: 300px;
+  }
 `
 
 const ColumnImages = styled.div``
@@ -54,6 +87,14 @@ const MainImageRendering = styled.img`
 
 const ProductDescription = styled.div`
   flex: 1;
+  width: 600px;
+  margin-inline: auto;
+  @media screen and (max-width: 724px) {
+    width: 500px;
+  }
+  @media screen and (max-width: 610px) {
+    width: 400px;
+  }
 `
 
 const Title = styled.h2`
@@ -61,6 +102,9 @@ const Title = styled.h2`
   font-size: 2.4rem;
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
+  @media screen and (max-width: 602px) {
+    font-size: 2rem;
+  }
 `
 
 const PricesContainer = styled.div``
