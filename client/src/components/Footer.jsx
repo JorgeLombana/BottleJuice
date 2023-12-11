@@ -24,11 +24,13 @@ const BodyFooter = styled.div`
     padding:0 15px ;
     flex-wrap: wrap;
     height: auto;
+    gap: 30px;
   }
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: 550px) {
     flex-direction: column;
     text-align: center;
+    gap: 10px;
   }
 `
 
@@ -46,7 +48,7 @@ const FooterSections = styled.div`
     min-width: 180px;
   }
 
-  @media screen and (max-width: 660px) {
+  @media screen and (max-width: 665px) {
     margin:auto;
   }
 `
@@ -61,7 +63,17 @@ const StartupInfo = styled.div`
 const FooterTitles = styled.div`
   font-size: 1.1rem;
   font-weight: 500;
-`
+  
+  & .ri-arrow-down-s-line{
+      display: none;
+  }
+
+  @media screen and (max-width: 515px) {
+    .ri-arrow-down-s-line{
+      display: block;
+    }
+  }
+  `
 
 const UnordedList = styled.ul`
   list-style-type: none;
@@ -79,16 +91,26 @@ const ContactLink = styled.div`
     color: black;
   }
   
-  @media screen and (max-width: 515px) {
-    display: ${(props) => (props.expanded ? 'block' : 'none')};
-    float: left;
+  @media screen and (max-width: 540px) {
+    display: ${(props) => (props.BIG ? 'block' : 'none')};
+    flex-direction: column;
   }
 
+  @media screen and (max-width: 545px) {
+    justify-content: center;
+  }
 `
 
 const StyledLInk = styled(Link)`
-  @media screen and (max-width: 515px) {
+  @media screen and (max-width: 540px) {
     display: ${(props) => (props.expanded ? 'block' : 'none')};
+    float: left;
+  }
+`;
+
+const StyledLInk1 = styled(Link)`
+  @media screen and (max-width: 540px) {
+    display: ${(props) => (props.MENU ? 'block' : 'none')};
     float: left;
   }
 `;
@@ -111,12 +133,11 @@ const Input = styled.input`
 
 const Footer = () => {
   const [isExpanded, setExpanded] = useState(false);
+  const [isBIG, setSMALL] = useState(false);
+  const [isMENU, setTOGGLE] = useState(false);
   return (
     <Container>
-      <BodyFooter
-        onMouseEnter={() => setExpanded(true)}
-        onMouseLeave={() => setExpanded(false)}
-      >
+      <BodyFooter>
         <StartupInfo>
           <Logo />
           <div>
@@ -126,7 +147,11 @@ const Footer = () => {
         </StartupInfo>
 
         <FooterSections>
-          <FooterTitles>Quick Links</FooterTitles>
+          <FooterTitles 
+          onMouseEnter={() => setExpanded(true)}
+          onMouseLeave={() => setExpanded(false)}>
+            Quick Links<i className="ri-arrow-down-s-line"></i>
+            </FooterTitles>
           <UnordedList>
           <StyledLInk to="/" expanded={isExpanded}>
               <li>
@@ -148,37 +173,41 @@ const Footer = () => {
         </FooterSections>
 
         <FooterSections>
-          <FooterTitles>Policies</FooterTitles>
+          <FooterTitles 
+          onMouseEnter={() => setTOGGLE(true)}
+          onMouseLeave={() => setTOGGLE(false)}>Policies <i className="ri-arrow-down-s-line"></i></FooterTitles>
           <UnordedList>
-            <StyledLInk to="/" expanded={isExpanded}>
+            <StyledLInk1 to="/" MENU={isMENU}>
               <li>
                 Privacy Policy <i className="ri-arrow-right-up-line"></i>
               </li>
-            </StyledLInk>
-            <StyledLInk to="/" expanded={isExpanded}>
+            </StyledLInk1>
+            <StyledLInk1 to="/" MENU={isMENU}>
               <li>
                 Terms and Conditions <i className="ri-arrow-right-up-line"></i>
               </li>
-            </StyledLInk>
-            <StyledLInk to="/" expanded={isExpanded}>
+            </StyledLInk1>
+            <StyledLInk1 to="/" MENU={isMENU}>
               <li>
                 Return Policy <i className="ri-arrow-right-up-line"></i>
               </li>
-            </StyledLInk>
+            </StyledLInk1>
           </UnordedList>
         </FooterSections>
 
         <FooterSections>
-          <FooterTitles>Contact</FooterTitles>
-          <ContactLink expanded={isExpanded}>
+          <FooterTitles 
+          onMouseEnter={() => setSMALL(true)}
+          onMouseLeave={() => setSMALL(false)}>Contact <i className="ri-arrow-down-s-line"></i></FooterTitles>
+          <ContactLink BIG={isBIG}>
             <i className="ri-map-pin-2-line"></i>
             <span>Carrera 1 #5-21, Garzón, Huila</span>
           </ContactLink>
-          <ContactLink expanded={isExpanded}>
+          <ContactLink BIG={isBIG}>
             <i className="ri-phone-line"></i>
             <span>3132742352</span>
           </ContactLink>
-          <ContactLink expanded={isExpanded}>
+          <ContactLink BIG={isBIG}>
             <i className="ri-mail-send-line"></i>
             <span>bottlejuice@gmail.com</span>
           </ContactLink>

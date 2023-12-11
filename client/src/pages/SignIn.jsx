@@ -34,6 +34,10 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 468px;
+
+  @media screen and (max-width: 620px) {
+    width: 75%;
+  }
 `
 
 const Label = styled.label`
@@ -62,6 +66,12 @@ const ContainerGoogleRegister = styled.div`
   justify-content: space-between;
   margin-top: 30px;
   gap: 60px;
+
+  @media screen and (max-width: 555px) {
+    flex-direction: column;
+    margin-top: 5px;
+    gap: 20px;
+  }
 `
 
 const RegisterDivisor = styled.div`
