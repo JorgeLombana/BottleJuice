@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import aboutImg from '../images/whatWeEat.jpg'
 import { Link } from 'react-router-dom'
 
 const Container = styled.div`
