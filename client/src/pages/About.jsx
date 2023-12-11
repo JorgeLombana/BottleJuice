@@ -453,7 +453,6 @@ const Title = styled.h1`
 
 const OutroSection = styled(SecondSection)`
   background-color: #e7e7e3;
-  margin: 100px 0 0 0;
   text-align: center;
   padding-bottom: 50px;
   button {
@@ -602,7 +601,7 @@ const About = () => {
           </div>
         </SecondSection>
 
-        {/* <OutroSection>
+        <OutroSection>
           <div className="subtitleContainer">
             <h3>The seed to a sustainable future begins with bottle juice</h3>
           </div>
@@ -613,7 +612,7 @@ const About = () => {
               <i className="ri-arrow-right-up-line"></i>
             </button>
           </Link>
-        </OutroSection> */}
+        </OutroSection>
       </Container>
     </>
   )
