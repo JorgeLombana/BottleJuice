@@ -13,7 +13,6 @@ import storage from 'redux-persist/lib/storage';
 import userReducer from './user/userSlice.js';
 import bazarReducer from './bazarSlice';
 
-// Configuración de persistencia para user
 const userPersistConfig = {
   key: 'user',
   version: 1,
@@ -21,7 +20,6 @@ const userPersistConfig = {
 };
 const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 
-// Configuración de persistencia para bazar
 const bazarPersistConfig = {
   key: 'bazar',
   version: 1,
@@ -29,13 +27,11 @@ const bazarPersistConfig = {
 };
 const persistedBazarReducer = persistReducer(bazarPersistConfig, bazarReducer);
 
-// Combinar ambos reducers
 const rootReducer = combineReducers({
   user: persistedUserReducer,
   bazar: persistedBazarReducer,
 });
 
-// Configuración del almacén
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
@@ -46,5 +42,4 @@ export const store = configureStore({
     }),
 });
 
-// Configuración de persistor
 export const persistor = persistStore(store);

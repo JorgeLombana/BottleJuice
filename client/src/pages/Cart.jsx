@@ -30,7 +30,6 @@ const Hr = styled.hr`
 
 const CartTotalsHeader = styled.h2`
   font-size: 1.4rem;
-  /* font-weight: ; */
 `
 
 const CartTotalsText = styled.p`
@@ -151,16 +150,16 @@ const Cart = () => {
     if (userInfo) {
       setPayNow(true)
     } else {
-      toast.error('Please sign in to Checkout')
+      alert('We are working on it.')
     }
   }
 
-  const payment = async (token) => {
-    await axios.post('http://localhost:8000/pay', {
-      amount: totalAmt * 100,
-      token: token,
-    })
-  }
+  // const payment = async (token) => {
+  //   await axios.post('http://localhost:8000/pay', {
+  //     amount: totalAmt * 100,
+  //     token: token,
+  //   })
+  // }
 
   const paymentMethods = [
     'https://colombia.payu.com/wp-content/uploads/sites/5/2020/03/CO_Sol_logos_american_express-.png',
@@ -181,7 +180,6 @@ const Cart = () => {
 
   return (
     <>
-      <Toaster position="top-right" expand={false} />
       {productData.length > 0 ? (
         <CartContainer>
           <CartItem />
@@ -252,7 +250,10 @@ const Cart = () => {
             Please go back to Shopping and add products to Cart.
           </EmptyCartText>
           <Link to="/">
-            <GoShoppingButton style={{ transition: 'transform 0.5s ease-in-out' }} to="/">
+            <GoShoppingButton
+              style={{ transition: 'transform 0.5s ease-in-out' }}
+              to="/"
+            >
               <span style={{ transition: 'transform 0.5s ease-in-out' }}>
                 <HiOutlineArrowLeftStyled />
               </span>

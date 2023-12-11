@@ -22,11 +22,12 @@ import { Link } from 'react-router-dom'
 import { toast, Toaster } from 'sonner'
 
 const Container = styled.div`
-  height: 112vh;
+  height: 100vh;
 `
 
 const ContainerProfile = styled.div`
   position: relative;
+  width: 1024px;
   margin-inline: auto;
   margin-top: 1%;
   p {
@@ -35,8 +36,6 @@ const ContainerProfile = styled.div`
   }
   form {
     .inputsAndLabels {
-      padding: 5px;
-      margin-top: 20px;
       width: 50%;
       margin-inline: auto;
       label {
@@ -79,35 +78,11 @@ const ContainerProfile = styled.div`
     }
   }
   .signOut {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     position: absolute;
     top: 214px;
     right: 30px;
     cursor: pointer;
-    font-weight: 400;
-  }
-
-  @media screen and (max-width: 700px) {
-    .updateDelete{
-      flex-direction: column;
-      gap: 10px;
-     align-items: center;
-    }
-
-    .updateDelete > *{
-      text-align: center;
-      padding: 3px;
-    }
-  }
-
-  @media screen and (max-width: 490px) {
-    form > *{
-      font-size:0.9rem;
-    }
-
-    .signOut{
-      top: 150px;
-    }
   }
 `
 
@@ -138,8 +113,8 @@ const ContainerCoverPhoto = styled.div`
 `
 
 const StyledImg = styled.img`
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 `
 
@@ -158,13 +133,13 @@ const CamerIconOverlay = styled.i`
       cursor: pointer;
     }
   }
-
 `
 const ImgContainer = styled.div`
   margin-top: -100px;
   margin-left: 80px;
   position: relative;
-  max-width: 18%;
+  width: 180px;
+  height: 180px;
   &:hover {
     ${StyledImg} {
       display: flex;
@@ -181,10 +156,6 @@ const ImgContainer = styled.div`
     margin-left: -60px;
     width: 300px;
   }
-
-  @media screen and (max-width: 480px) {
-    margin-left: 60px;
-  }
 `
 
 const TopProfile = styled.div`
@@ -192,6 +163,7 @@ const TopProfile = styled.div`
   height: 80px;
   position: relative;
   /* border: 1px solid rgba(0, 0, 0, 1); */
+  z-index: -1;
   span {
     cursor: pointer;
     font-size: 1.3rem;
@@ -205,25 +177,9 @@ const Title = styled.h2`
   display: flex;
   gap: 10px;
   position: absolute;
-  left: 30%;
+  left: 280px;
   top: 15px;
   font-size: 1.4rem;
-  
-  @media screen and (max-width: 750px) {
-    left: 36%;
-    font-size: 1.2rem;
-  }
-
-  @media screen and (max-width: 500px) {
-    left: 40%;
-    font-size: 1rem;
-    top: 28px;
-  }
-
-  @media screen and (max-width: 400px) {
-    left: 45%;
-    top: 33px;
-  }
 `
 
 export default function Profile() {
@@ -428,7 +384,7 @@ export default function Profile() {
             </div>
           </form>
           <span className="signOut" onClick={handleSignOut}>
-          Sign Out<i className="ri-logout-box-r-line"></i>
+            <i className="ri-logout-box-r-line"></i>
           </span>
           <p style={{ color: 'red' }}>{error && 'Something went wrong!'}</p>
           <p style={{ color: 'green' }}>

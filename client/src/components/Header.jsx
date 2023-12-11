@@ -298,7 +298,7 @@ export default function Header() {
               <li>Contact us</li>
             </Link>
             <Link to="/products">
-              <li>Products</li>
+              <li>Flavors</li>
             </Link>
             <Link to="/products">
               <i className="ri-search-line" style={{ fontSize: 18 }}></i>
@@ -375,7 +375,7 @@ export default function Header() {
         </Link>
 
         <Link to="/products" onClick={closeMenu}>
-          <li>Products</li>
+          <li>Flavors</li>
         </Link>
 
         <Link to="/cart" onClick={closeMenu}>

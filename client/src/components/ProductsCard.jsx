@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../redux/bazarSlice'
 import styled from 'styled-components'
-import { toast, Toaster } from 'sonner'
+import { logoFake } from '../images/'
 
 const ImageContainer = styled.div`
   position: relative;
@@ -28,12 +28,16 @@ const ImageContainer = styled.div`
     }
   }};
 
-  cursor: pointer;
-  overflow: hidden;
-
   &:hover {
     .product-image {
     }
+  }
+
+  .logoFake {
+    transition: all 0.5s ease-in-out;
+    position: absolute;
+    z-index: 1;
+    height: 79%;
   }
 `
 
@@ -46,14 +50,15 @@ const CardWrapper = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   &:hover {
     ${ImageContainer} {
-      :nth-child(1) {
+      :nth-child(1),
+      .logoFake {
         filter: drop-shadow(-10px 5px 7px rgba(0, 0, 0, 0.2));
         transform: rotate(5deg) scale(1.15);
       }
-      :nth-child(2) {
+      :nth-child(3) {
         top: -5px;
       }
-      :nth-child(3) {
+      :nth-child(4) {
         bottom: -5px;
       }
     }
@@ -126,26 +131,29 @@ const Buttons = styled.div`
     }
   }
 `
+
 const BackgroundTextImg = styled.p`
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   color: white;
-  font-size: 5.3rem;
+
   font-weight: 1000;
   text-transform: uppercase;
   z-index: 0;
   top: -250px;
-  line-height: 1.05;
   transition: all 0.5s ease-in-out;
 `
+
 const BackgroundTextImg2 = styled.p`
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   color: white;
-  font-size: 5.3rem;
   font-weight: 1000;
   text-transform: uppercase;
   z-index: 0;
   bottom: -250px;
-  line-height: 1.05;
   transition: all 0.5s ease-in-out;
 `
 
@@ -175,11 +183,60 @@ const ProductsCard = ({ product }) => {
         description: product.description,
       })
     )
-    toast.error(`${product.title.substring(0, 23).toLowerCase()} is added`)
   }
+
+  const getDynamicContent = () => {
+    switch (product._id) {
+      case 1:
+        return 'yellow'
+      case 2:
+        return 'green'
+      case 3:
+        return 'berry'
+      case 4:
+        return 'mixed'
+      default:
+        return ''
+    }
+  }
+
+  const FontSize = () => {
+    switch (product._id) {
+      case 1:
+        return '5.2rem'
+      case 2:
+        return '6.4rem'
+      case 3:
+        return '6.6rem'
+      case 4:
+        return '6.3rem'
+      default:
+        return '5.1rem'
+    }
+  }
+
+  const LineHeight = () => {
+    switch (product._id) {
+      case 1:
+        return '1.06'
+      case 2:
+        return '0.855'
+      case 3:
+        return '0.83'
+      case 4:
+        return '0.845'
+      default:
+        return '1.05'
+    }
+  }
+
+  const dynamicContent = getDynamicContent()
+  const fontSize = FontSize()
+  const lineHeight = LineHeight()
+  console.log(product.image);
+
   return (
     <>
-      <Toaster position="bottom-left" expand={true} />
       <CardWrapper>
         <ImageContainer productid={product._id} onClick={handleDetails}>
           <ProductImage
@@ -187,13 +244,12 @@ const ProductsCard = ({ product }) => {
             src={product.image}
             alt="productImg"
           />
-          <BackgroundTextImg>
-            {product.title.substring(12, 19)}
-            {product.title.substring(12, 19)}
+          <img src={logoFake} alt="logo" className="logoFake" />
+          <BackgroundTextImg style={{ fontSize, lineHeight }}>
+            {dynamicContent} <br /> {dynamicContent}
           </BackgroundTextImg>
-          <BackgroundTextImg2>
-            {product.title.substring(12, 19)}
-            {product.title.substring(12, 19)}
+          <BackgroundTextImg2 style={{ fontSize, lineHeight }}>
+            {dynamicContent} <br /> {dynamicContent}
           </BackgroundTextImg2>
         </ImageContainer>
 
