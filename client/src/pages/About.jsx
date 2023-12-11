@@ -15,14 +15,56 @@ const Section = styled.section`
     text-align: center;
     letter-spacing: -2px;
   }
+  @media screen and (max-width: 1024px) {
+    h2 {
+      font-size: 3.9rem;
+      line-height: 4.5rem;
+    }
+  }
+  @media screen and (max-width: 768) {
+    h2 {
+      /* margin-bottom: -50px; */
+    }
+  }
 `
 
 const HeaderImage = styled.div`
   background-color: #e7e7e3;
   height: 82vh;
+  @media screen and (max-width: 1024px) {
+    height: 72vh;
+  }
+  @media screen and (max-width: 768px) {
+    height: 62vh;
+  }
+  @media screen and (max-width: 702px) {
+    height: 270vh;
+  }
+  @media screen and (max-width: 560px) {
+    height: 250vh;
+  }
+  @media screen and (max-width: 528px) {
+    height: 230vh;
+  }
+  @media screen and (max-width: 500px) {
+    height: 215vh;
+  }
+  @media screen and (max-width: 476px) {
+    height: 205vh;
+  }
+  @media screen and (max-width: 426px) {
+    height: 195vh;
+  }
+  @media screen and (max-width: 376px) {
+    height: 170vh;
+  }
+  @media screen and (max-width: 321px) {
+    height: 140vh;
+  }
 `
 
 const ImagesContainer = styled.div`
+  overflow-x: hidden;
   margin-top: -55px;
   margin-inline: auto;
   display: flex;
@@ -37,14 +79,70 @@ const ImagesContainer = styled.div`
       margin-left: -200px;
     }
   }
+  @media screen and (max-width: 702px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    margin-top: -70px;
+    div {
+      margin-bottom: 10vh;
+      margin-top: -270px;
+      &:first-of-type {
+        margin-top: 0px;
+        margin-right: 0;
+      }
+      &:nth-child(2) {
+        margin-top: -250px;
+      }
+      &:nth-child(3) {
+        margin-left: 0px;
+      }
+      img {
+        height: 100%;
+        margin: 0;
+        width: 100%;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    div {
+      margin-bottom: 15vh;
+      &:first-of-type {
+        margin-top: 40px;
+      }
+    }
+  }
 `
 
 const SecondSection = styled(Section)`
   padding-top: 4%;
+  height: 100;
+  @media screen and (max-width: 703px) {
+    padding-bottom: 30%;
+  }
+  @media screen and (max-width: 577px) {
+    padding-bottom: 25%;
+  }
+  @media screen and (max-width: 520px) {
+    padding-bottom: 40%;
+  }
+  @media screen and (max-width: 426px) {
+    padding-bottom: 70%;
+  }
+  @media screen and (max-width: 348px) {
+    padding-bottom: 100%;
+  }
   .subtitleContainer {
     width: 600px;
     margin-inline: auto;
     display: flex;
+    @media screen and (max-width: 703px) {
+      width: 90vw;
+      margin-top: 2vh;
+    }
     h3 {
       font-size: 2rem;
       line-height: 2.5rem;
@@ -56,32 +154,68 @@ const SecondSection = styled(Section)`
       margin-top: -30px;
       margin-left: -30px;
     }
-    .secondSvg {
-    }
   }
   .aboutFirstProduct {
     position: relative;
     margin-top: 1%;
-    padding-inline: 9%;
+    padding-inline: 9vw;
     height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
     justify-content: center;
-    p {
-      font-size: 1.5rem;
-      line-height: 2.5rem;
-      margin-right: 20px;
+    @media screen and (max-width: 1300px) {
+      padding-inline: 4vw;
     }
+    @media screen and (max-width: 703px) {
+      flex-direction: column;
+    }
+
     .imageBackground {
-      width: 35%;
-      height: 470px;
-      position: absolute;
-      background-color: #f2f5e1;
+      min-width: 450px;
+      height: 400px;
       background-color: #f7fafa;
-      right: 50%;
-      top: 7%;
-      z-index: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media screen and (max-width: 943px) {
+        min-width: 400px;
+      }
+      @media screen and (max-width: 813px) {
+        min-width: 350px;
+      }
+      @media screen and (max-width: 493px) {
+        margin-top: 10vh;
+      }
+      @media screen and (max-width: 375px) {
+        min-width: 90vw;
+        margin-top: 20vh;
+      }
+    }
+    @media screen and (max-width: 703px) {
+      width: 90%;
+      margin-top: 20vh;
+      margin-inline: auto;
+    }
+    .textDescription {
+      padding-left: 50px;
+
+      @media screen and (max-width: 943px) {
+        padding-left: 20px;
+      }
+      p {
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+        @media screen and (max-width: 1160px) {
+          font-size: 1.3rem;
+          line-height: 2rem;
+        }
+        @media screen and (max-width: 943px) {
+          font-size: 1.1rem;
+          line-height: 1.9rem;
+          padding-top: 5vh;
+        }
+      }
     }
   }
 `
@@ -91,12 +225,16 @@ const FirstSection = styled.section`
 `
 
 const StyledImage = styled.img`
+  transform: scale(0.9);
   &.product1 {
     margin-top: 50px;
     margin-left: 50px;
     width: 50%;
     height: auto;
     z-index: 1;
+  }
+  @media screen and (max-width: 1024px) {
+    transform: scale(0.8);
   }
 `
 
@@ -122,6 +260,7 @@ const moveUp = keyframes`
     100% {
       transform: translateY(0);
     }
+    
   `
 const moveDown = keyframes`
 0% {
@@ -147,6 +286,56 @@ const moveDown = keyframes`
   transform: translateY(-94%);
 }
 `
+
+const moveUpMobile = keyframes`
+    0% {
+      transform: translateY(-10%);
+      filter: blur(3px);
+    }
+    0.25% {
+      transform: translateY(-17%);
+      filter: blur(2px);
+    }
+    0.3% {
+      transform: translateY(-18%);
+      filter: blur(1px);
+    }
+    0.35% {
+      transform: translateY(-19%); filter: blur(0);
+    }
+    50% {
+      transform: translateY(-84%);
+    }
+    100% {
+      transform: translateY(-10%);
+    }
+    
+  `
+const moveDownMobile = keyframes`
+0% {
+  transform: translateY(-84%);
+  filter: blur(3px);
+}
+0.25% {
+  transform: translateY(-77%);
+  filter: blur(2px);
+}
+0.3% {
+  transform: translateY(-76%);
+  filter: blur(1px);
+}
+0.35% {
+  transform: translateY(-75%);
+  filter: blur(0);
+}
+50% {
+  transform: translateY(0);
+}
+100% {
+  transform: translateY(-84%);
+}
+`
+
 const FadeContainer = styled.div`
   height: calc(100vh - 49px);
   overflow: hidden;
@@ -172,11 +361,33 @@ const GridContainer = styled.div`
   gap: 15px;
 
   z-index: -9;
+  @media screen and (max-width: 1024px) {
+    /* transform: rotate(5deg) ; */
+  }
+  @media screen and (max-width: 1024px) {
+    transform: scale(0.9) rotate(5deg);
+    margin-left: -100px;
+  }
+  @media screen and (max-width: 769px) {
+    transform: scale(0.8) rotate(5deg);
+    margin-left: -150px;
+  }
+  @media screen and (max-width: 426px) {
+    transform: scale(0.8) rotate(5deg);
+    margin-left: -150px;
+  }
+  @media screen and (max-width: 376px) {
+    transform: scale(0.8) rotate(5deg);
+    margin-left: -170px;
+  }
+  @media screen and (max-width: 321px) {
+    margin-left: -200px;
+  }
 `
 
 const Column = styled.div`
   flex: 1;
-  height: 100%;
+  min-width: 300px;
   transition: all ease-in-out;
   &:first-of-type,
   &:nth-of-type(3) {
@@ -187,17 +398,32 @@ const Column = styled.div`
     animation: ${moveDown} 250s linear infinite;
   }
   div {
-    width: 100%;
     height: 400px;
     background-color: #f2f3f5;
     margin: 15px 0;
   }
+
+  @media screen and (max-width: 769px) {
+    &:first-of-type,
+    &:nth-of-type(3) {
+      animation: ${moveUpMobile} 250s linear infinite;
+    }
+    &:nth-of-type(2),
+    &:nth-of-type(4) {
+      animation: ${moveDownMobile} 250s linear infinite;
+    }
+  }
 `
 const Image = styled.img`
+  height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: 0 -30px;
-  max-width: 100%;
+  object-position: 0 -50px;
+  margin-left: -8px;
+  @media screen and (max-width: 1024px) {
+    transform: scale(1.3);
+    object-position: 0 10px;
+  }
 `
 const Title = styled.h1`
   position: absolute;
@@ -212,6 +438,17 @@ const Title = styled.h1`
   z-index: 1;
   background-color: #000000a5;
   color: #ffffff;
+  @media screen and (max-width: 1200px) {
+    font-size: 3rem;
+    letter-spacing: -1px;
+  }
+  @media screen and (max-width: 427px) {
+    font-size: 2.4rem;
+    letter-spacing: 0;
+  }
+  @media screen and (max-width: 427px) {
+    font-size: 2rem;
+  }
 `
 
 const OutroSection = styled(SecondSection)`
@@ -231,6 +468,7 @@ const OutroSection = styled(SecondSection)`
     }
   }
 `
+const ProductImg = styled.img``
 
 const images = [
   'https://images.ctfassets.net/iw4cawak30d4/3ktss87HncTdCRmPXvTVbQ/3782adf265d47924b34df39b5fddaef7/a02-carro-carrot-cinnamon-pdp-web.png?fm=avif&q=60&w=600',
@@ -275,8 +513,7 @@ const About = () => {
               {Array.from({ length: 4 }).map((_, columnIndex) => (
                 <Column key={columnIndex}>
                   {columnIndex === 2 || columnIndex === 3
-                    ?
-                      images
+                    ? images
                         .slice()
                         .reverse()
                         .map((imageUrl, index) => (
@@ -284,8 +521,7 @@ const About = () => {
                             <Image src={imageUrl} alt={`Image ${index + 1}`} />
                           </div>
                         ))
-                    :
-                      images.map((imageUrl, index) => (
+                    : images.map((imageUrl, index) => (
                         <div key={index}>
                           <Image src={imageUrl} alt={`Image ${index + 1}`} />
                         </div>
@@ -344,26 +580,29 @@ const About = () => {
             </svg>
           </div>
           <div className="aboutFirstProduct">
-            <StyledImage
-              className="product1"
-              src="https://images.ctfassets.net/iw4cawak30d4/3MKUyxc6WD5U8eaBg6iSN/0e4037b593c8e8cae1423b0b38b20841/a10-mango-deconstructed-pdp-web.png"
-              alt=""
-            />
-            <div className="imageBackground"></div>
-            <p>
-              Bottle Juice is unwaveringly devoted to simplifying your journey
-              toward a healthier lifestyle through our diverse range of natural
-              juices. With a deep commitment to sustainability, we go the extra
-              mile in meticulously sourcing a variety of organic fruits and
-              vegetables. This not only ensures that every sip contributes to
-              your well-being but also reflects our dedication to fostering a
-              healthier planet through thoughtful choices in the selection of
-              our ingredients.
-            </p>
+            <div className="imageBackground">
+              <ProductImg
+                className="product1"
+                src="https://images.ctfassets.net/iw4cawak30d4/3MKUyxc6WD5U8eaBg6iSN/0e4037b593c8e8cae1423b0b38b20841/a10-mango-deconstructed-pdp-web.png"
+                alt=""
+              />
+            </div>
+            <div className="textDescription">
+              <p>
+                Bottle Juice is unwaveringly devoted to simplifying your journey
+                toward a healthier lifestyle through our diverse range of
+                natural juices. With a deep commitment to sustainability, we go
+                the extra mile in meticulously sourcing a variety of organic
+                fruits and vegetables. This not only ensures that every sip
+                contributes to your well-being but also reflects our dedication
+                to fostering a healthier planet through thoughtful choices in
+                the selection of our ingredients.
+              </p>
+            </div>
           </div>
         </SecondSection>
 
-        <OutroSection>
+        {/* <OutroSection>
           <div className="subtitleContainer">
             <h3>The seed to a sustainable future begins with bottle juice</h3>
           </div>
@@ -374,7 +613,7 @@ const About = () => {
               <i className="ri-arrow-right-up-line"></i>
             </button>
           </Link>
-        </OutroSection>
+        </OutroSection> */}
       </Container>
     </>
   )
