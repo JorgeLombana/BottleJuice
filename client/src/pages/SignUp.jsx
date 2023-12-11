@@ -8,6 +8,7 @@ const Container = styled.div`
   margin-top: 2%;
   height: 100vh;
   text-align: center;
+  margin-bottom: 2%;
 `
 
 const SignUpContainer = styled.div`
@@ -29,6 +30,10 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 468px;
+
+  @media screen and (max-width: 630px) {
+    width: 75%;
+  }
 `
 
 const Label = styled.label`
@@ -67,6 +72,12 @@ const ContainerGoogleRegister = styled.div`
   justify-content: space-between;
   margin-top: 30px;
   gap: 60px;
+
+  @media screen and (max-width: 550px) {
+    flex-direction: column;
+    margin-top: 5px;
+    gap: 20px;
+  }
 `
 
 const ContinueWithGoogle = styled(OAuth)`
